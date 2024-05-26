@@ -1,8 +1,8 @@
 .App {
-    width: 850px;
-    height: 600px;
-    overflow: hidden;
-    margin: 0 auto 0 auto;
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 0 auto 0 auto;
 }
 
 #Intro {
@@ -40,21 +40,37 @@
 }
 
 #Opponent {
-    width: 295px;
-    height: 540px;
-    float: left;
+  width: 295px;
+  height: 540px;
+  float: left;
 }
 
 #Game {
-    width: 550px;
-    height: 540px;
-    float: right;
+  width: 550px;
+  height: 540px;
+  float: right;
 }
 
 .GameRow {
-    width: 550px;
-    height: 140px;
-    float: left;
+  width: 550px;
+  height: 140px;
+  float: left;
+}
+
+.left {
+  width: 49%;
+  float: left;
+}
+
+.right {
+  width: 49%;
+  float: right;
+}
+
+label {
+  font-size: 0.8em;
+  display: block;
+  float: right;
 }
 
 div {

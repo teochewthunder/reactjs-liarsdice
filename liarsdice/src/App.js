@@ -23,7 +23,31 @@ function App() {
           
         </div> 
         <div id="Dashboard">
-          
+          <div className="left">
+            LIAR'S DICE
+            <br />
+            STAGE ONE: XIAO CAO
+          </div>
+
+          <div className="right">     
+            <label id="DashboardRestart">
+              Restart&nbsp;
+              <button>R</button>
+            </label>
+            <br />
+            <label id="DashboardQuit">
+              Quit&nbsp;
+              <button>Q</button>
+            </label>
+            <br />
+            <label id="DashboardLanguage">
+              Language&nbsp; 
+              <select>
+                <option value="cn">CN</option>
+                <option value="en">EN</option>
+              </select>
+            </label>
+          </div>  
         </div> 
       </div>
 
