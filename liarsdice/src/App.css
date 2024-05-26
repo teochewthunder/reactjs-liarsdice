@@ -1,38 +1,62 @@
 .App {
-  text-align: center;
+    width: 850px;
+    height: 600px;
+    overflow: hidden;
+    margin: 0 auto 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#Intro {
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.col {
+  width: 160px;
+  height: 540px;
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+  overflow: visible;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#IntroStart {
+  width: 300px;
+  height: 200px;
+  margin-left: -70px;
+  margin-top: 150px;
 }
 
-.App-link {
-  color: #61dafb;
+#Dashboard {
+  width: 100%;
+  height: 60px;
+  float: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#Main {
+  width: 100%;
+  height: 540px;
+}
+
+#Opponent {
+    width: 295px;
+    height: 540px;
+    float: left;
+}
+
+#Game {
+    width: 550px;
+    height: 540px;
+    float: right;
+}
+
+.GameRow {
+    width: 550px;
+    height: 140px;
+    float: left;
+}
+
+div {
+  outline: 1px solid red;
 }

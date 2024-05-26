@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div id="Intro">
+        <div className="col">
+          
+        </div>   
+        <div className="col">
+          
+        </div> 
+        <div className="col">
+          <div id="IntroStart">
+            
+          </div>           
+        </div> 
+        <div className="col">
+          
+        </div> 
+        <div className="col">
+          
+        </div> 
+        <div id="Dashboard">
+          
+        </div> 
+      </div>
+
+      <div id="Main">
+        <div id="Opponent">
+
+        </div> 
+
+        <div id="Game">
+          <div id="OpponentDialog" className="GameRow">
+
+          </div> 
+          <div id="OpponentDice" className="GameRow">
+
+          </div> 
+          <div id="YourDialog" className="GameRow">
+
+          </div> 
+          <div id="YourDice" className="GameRow">
+
+          </div> 
+        </div> 
+      </div>        
     </div>
   );
 }
