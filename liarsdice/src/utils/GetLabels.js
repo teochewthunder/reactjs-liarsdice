@@ -67,9 +67,9 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "", lang: "", value: ""}
 	];
 
-	let match = labels.filter((x)=> { return (x.labelName == labelName && x.lang == lang); });
+	let match = labels.filter((x)=> { return (x.labelName === labelName && x.lang === lang); });
 
-	if (match.length == 0) return "";
+	if (match.length === 0) return "";
 	return match[0].value;
 }
 

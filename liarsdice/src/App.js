@@ -4,7 +4,7 @@ import './App.css';
 import GetLabels from './utils/GetLabels';
 
 function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("cn");
   const [stage, setStage] = useState(0);
   const [round, setRound] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -18,40 +18,60 @@ function App() {
   const [guessDice, setGuessDice] = useState(2);
 
   function RestartStage() {
-    setpaused(false);
+    setPaused(false);
     setRound(0);
     setPlayerIntoxication(0);
     setOpponentIntoxication(0);
     setGuessQty(3);
     setGuessDice(2);
-    setPlayerDialog(GetPhrases(stage, "intro", lang));
   }
 
   function Quit() {
     setStage(0);
-    setpaused(false);
+    setPaused(false);
+  }
+
+  function Start() {
+    setStage(1);
+    setPaused(true);
   }
 
   return (
     <div className="App">
       <div id="Intro">
         <div className="col">
-          
-        </div>   
-        <div className="col">
-          
-        </div> 
-        <div className="col">
-          <div id="IntroStart">
+          <div className={ (stage === 0 ? "introimage introimage1" : "introimage intrimage1 floatup") }>
             
-          </div>           
-        </div> 
+          </div> 
+        </div>
+
         <div className="col">
-          
-        </div> 
+          <div className={ (stage === 0 ? "introimage introimage2" : "introimage introimage2 floatup") }>
+            
+          </div> 
+        </div>
+
         <div className="col">
+          <div className={ (stage === 0 ? "introimage introimage3" : "introimage introimage3 floatup") }>
           
-        </div> 
+          </div>            
+          <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
+              <button onClick={ ()=>{ Start(); }}>S</button>
+          </div>  
+        </div>
+
+        <div className="col">
+          <div className={ (stage === 0 ? "introimage introimage4" : "introimage introimage4 floatup") }>
+            
+          </div> 
+        </div>
+
+        <div className="col">
+          <div className={ (stage === 0 ? "introimage introimage5" : "introimage introimage5 floatup") }>
+            
+          </div> 
+        </div>
+
 
         <div id="Dashboard">
           <div className="left">
@@ -63,21 +83,21 @@ function App() {
           <div className="right">     
             <label id="DashboardRestart" className={ (stage == 0 ? "Hidden" : "") }>
               Restart&nbsp;
-              <button onClick={ ()=>{ RestartStage(); }>R</button>
+              <button onClick={ ()=>{ RestartStage(); }}>R</button>
               <br />
             </label>
             
             <label id="DashboardQuit" className={ (stage == 0 ? "Hidden" : "") }>
               Quit&nbsp;
-              <button onClick={ ()=>{ Quit(); }>Q</button>
+              <button onClick={ ()=>{ Quit(); }}>Q</button>
               <br />
             </label>
 
             <label id="DashboardLanguage">
               Language&nbsp; 
               <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
-                <option value="cn" >CN</option>
-                <option value="en" >EN</option>
+                <option value="cn" selected>CN</option>
+                <option value="en">EN</option>
               </select>
             </label>
           </div>  

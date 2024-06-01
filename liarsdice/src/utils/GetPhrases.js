@@ -22,9 +22,9 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 5, phraseName: "intro", lang: "cn", value: ""}
 	];
 
-	let match = phrases.filter((x)=> { return (x.phraseName == phraseName && x.lang == lang && (x.personality == null || x.personality == personality)); });
+	let match = phrases.filter((x)=> { return (x.phraseName === phraseName && x.lang === lang && (x.personality == null || x.personality === personality)); });
 
-	if (match.length == 0) return "";
+	if (match.length === 0) return "";
 	if (match.length > 1) {
 		var r = Math.foor(Math.rand() * match.length) + 1;
 		return match[r].value;
