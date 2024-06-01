@@ -11,7 +11,7 @@
 }
 
 .col {
-  width: 160px;
+  width: 164px;
   height: 540px;
   float: left;
   margin-left: 3px;
@@ -20,7 +20,7 @@
 }
 
 .col .introimage{
-  width: 156px;
+  width: 160px;
   height: 536px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.5);

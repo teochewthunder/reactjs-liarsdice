@@ -34,11 +34,17 @@ function App() {
   function Start() {
     setStage(1);
     setPaused(true);
+    setTimeout(()=> {
+      setRound(1);
+      setPaused(false);
+    },
+    2000
+    );
   }
 
   return (
     <div className="App">
-      <div id="Intro">
+      <div id="Intro" className={ (stage > 0 && round > 0 ? "Hidden" : "") }>
         <div className="col">
           <div className={ (stage === 0 ? "introimage introimage1" : "introimage intrimage1 floatup") }>
             
@@ -70,38 +76,37 @@ function App() {
           <div className={ (stage === 0 ? "introimage introimage5" : "introimage introimage5 floatup") }>
             
           </div> 
+        </div> 
+      </div>
+
+      <div id="Dashboard">
+        <div className="left">
+          LIAR'S DICE
+          <br />
+          { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
-
-        <div id="Dashboard">
-          <div className="left">
-            LIAR'S DICE
+        <div className="right">     
+          <label id="DashboardRestart" className={ (stage == 0 ? "Hidden" : "") }>
+            Restart&nbsp;
+            <button onClick={ ()=>{ RestartStage(); }}>R</button>
             <br />
-            { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
-          </div>
+          </label>
+          
+          <label id="DashboardQuit" className={ (stage == 0 ? "Hidden" : "") }>
+            Quit&nbsp;
+            <button onClick={ ()=>{ Quit(); }}>Q</button>
+            <br />
+          </label>
 
-          <div className="right">     
-            <label id="DashboardRestart" className={ (stage == 0 ? "Hidden" : "") }>
-              Restart&nbsp;
-              <button onClick={ ()=>{ RestartStage(); }}>R</button>
-              <br />
-            </label>
-            
-            <label id="DashboardQuit" className={ (stage == 0 ? "Hidden" : "") }>
-              Quit&nbsp;
-              <button onClick={ ()=>{ Quit(); }}>Q</button>
-              <br />
-            </label>
-
-            <label id="DashboardLanguage">
-              Language&nbsp; 
-              <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
-                <option value="cn" selected>CN</option>
-                <option value="en">EN</option>
-              </select>
-            </label>
-          </div>  
-        </div> 
+          <label id="DashboardLanguage">
+            Language&nbsp; 
+            <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
+              <option value="cn" selected>CN</option>
+              <option value="en">EN</option>
+            </select>
+          </label>
+        </div>  
       </div>
 
       <div id="Main">
