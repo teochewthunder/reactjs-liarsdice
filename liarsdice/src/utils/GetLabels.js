@@ -18,7 +18,7 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "stage4", lang: "cn", value: ""},
 		{ labelName: "stage5", lang: "en", value: "STAGE FIVE"},
 		{ labelName: "stage5", lang: "cn", value: ""},	
-		{ labelName: "opponent1", lang: "en", value: "LITLE GRASS"},
+		{ labelName: "opponent1", lang: "en", value: "LITTLE GRASS"},
 		{ labelName: "opponent1", lang: "cn", value: ""},
 		{ labelName: "opponent2", lang: "en", value: "CHANEL"},
 		{ labelName: "opponent2", lang: "cn", value: "CHANEL"},
