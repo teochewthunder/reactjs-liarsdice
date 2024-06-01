@@ -71,8 +71,14 @@ label {
   font-size: 0.8em;
   display: block;
   float: right;
+  text-align: right;
+  width: 100%;
 }
 
 div {
   outline: 1px solid red;
+}
+
+.Hidden {
+    display: none;
 }

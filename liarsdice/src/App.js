@@ -5,7 +5,8 @@ import GetLabels from './utils/GetLabels';
 
 function App() {
   const [lang, setLang] = useState("en");
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [playerIntoxication, setPlayerIntoxication] = useState(0);
   const [opponentIntoxication, setOpponentIntoxication] = useState(0);
   const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
@@ -44,16 +45,18 @@ function App() {
           </div>
 
           <div className="right">     
-            <label id="DashboardRestart">
+            <label id="DashboardRestart" className={ (stage == 0 ? "Hidden" : "") }>
               Restart&nbsp;
               <button>R</button>
+              <br />
             </label>
-            <br />
-            <label id="DashboardQuit">
+            
+            <label id="DashboardQuit" className={ (stage == 0 ? "Hidden" : "") }>
               Quit&nbsp;
               <button>Q</button>
+              <br />
             </label>
-            <br />
+
             <label id="DashboardLanguage">
               Language&nbsp; 
               <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
