@@ -6,7 +6,7 @@ import GetLabels from './utils/GetLabels';
 function App() {
   const [lang, setLang] = useState("en");
   const [stage, setStage] = useState(0);
-  const [round, setRound] = useState(1);
+  const [round, setRound] = useState(0);
   const [paused, setPaused] = useState(false);
   const [playerIntoxication, setPlayerIntoxication] = useState(0);
   const [opponentIntoxication, setOpponentIntoxication] = useState(0);
@@ -19,6 +19,7 @@ function App() {
 
   function RestartStage() {
     setpaused(false);
+    setRound(0);
     setPlayerIntoxication(0);
     setOpponentIntoxication(0);
     setGuessQty(3);
