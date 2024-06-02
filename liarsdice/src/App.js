@@ -19,7 +19,7 @@ function App() {
 
   function RestartStage() {
     setPaused(false);
-    setRound(0);
+    setRound(1);
     setPlayerIntoxication(0);
     setOpponentIntoxication(0);
     setGuessQty(3);
@@ -28,6 +28,7 @@ function App() {
 
   function Quit() {
     setStage(0);
+    setRound(0);
     setPaused(false);
   }
 
@@ -44,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <div id="Intro" className={ (stage > 0 && round > 0 ? "Hidden" : "") }>
+      <div id="Intro" className={ (stage > 0 && round > 0 ? "hidden" : "") }>
         <div className="col">
           <div className={ (stage === 0 ? "introimage introimage1" : "introimage intrimage1 floatup") }>
             
@@ -61,7 +62,7 @@ function App() {
           <div className={ (stage === 0 ? "introimage introimage3" : "introimage introimage3 floatup") }>
           
           </div>            
-          <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
+          <div id="IntroStart" className={ (stage === 0 && round === 0 ? "" : "fade") }>
               <button onClick={ ()=>{ Start(); }}>S</button>
           </div>  
         </div>
@@ -80,20 +81,20 @@ function App() {
       </div>
 
       <div id="Dashboard">
-        <div className="left">
+        <div className={ (stage === 0 && round === 0 ? "left invisible" : "left") }>
           LIAR'S DICE
           <br />
           { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
         <div className="right">     
-          <label id="DashboardRestart" className={ (stage == 0 ? "Hidden" : "") }>
+          <label id="DashboardRestart" className={ (stage === 0 && round === 0 ? "invisible" : "") }>
             Restart&nbsp;
             <button onClick={ ()=>{ RestartStage(); }}>R</button>
             <br />
           </label>
           
-          <label id="DashboardQuit" className={ (stage == 0 ? "Hidden" : "") }>
+          <label id="DashboardQuit" className={ (stage === 0 && round === 0 ? "invisible" : "") }>
             Quit&nbsp;
             <button onClick={ ()=>{ Quit(); }}>Q</button>
             <br />
@@ -102,7 +103,7 @@ function App() {
           <label id="DashboardLanguage">
             Language&nbsp; 
             <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
-              <option value="cn" selected>CN</option>
+              <option value="cn">CN</option>
               <option value="en">EN</option>
             </select>
           </label>
