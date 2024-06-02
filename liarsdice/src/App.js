@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
+import Game from './components/Game';
 
 import GetLabels from './utils/GetLabels';
+import GetOpponentImage from './utils/GetOpponentImage';
 
 function App() {
   const [lang, setLang] = useState("cn");
@@ -111,24 +113,26 @@ function App() {
       </div>
 
       <div id="Main">
-        <div id="Opponent">
+        <div id="OpponentImage" style={ GetOpponentImage(stage, opponentIntoxication) }>
 
         </div> 
 
-        <div id="Game">
-          <div id="OpponentDialog" className="GameRow">
-
-          </div> 
-          <div id="OpponentDice" className="GameRow">
-
-          </div> 
-          <div id="YourDialog" className="GameRow">
-
-          </div> 
-          <div id="YourDice" className="GameRow">
-
-          </div> 
-        </div> 
+        <Game 
+          stage = { stage }
+          setStage = { setStage }
+          round = { round }
+          setRound = { setRound }
+          opponentIntoxication = { opponentIntoxication }
+          setOpponentIntoxication = { setOpponentIntoxication }
+          setPlayerIntoxication = { setPlayerIntoxication }
+          playerIntoxication = { playerIntoxication }
+          opponentDice = { opponentDice }
+          playerDice = { playerDice }
+          guessDice = { guessDice }
+          guessQty = { guessQty }
+          setGuessDice = { setGuessDice }
+          setGuessQty = { setGuessQty }
+        />
       </div>        
     </div>
   );

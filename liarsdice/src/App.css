@@ -99,18 +99,6 @@
   float: left;
 }
 
-#Game {
-  width: 550px;
-  height: 540px;
-  float: right;
-}
-
-.GameRow {
-  width: 550px;
-  height: 140px;
-  float: left;
-}
-
 .left {
   width: 49%;
   float: left;
