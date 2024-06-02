@@ -81,20 +81,20 @@ function App() {
       </div>
 
       <div id="Dashboard">
-        <div className={ (stage === 0 && round === 0 ? "left invisible" : "left") }>
+        <div className={ (stage === 0 || round === 0 ? "left invisible" : "left") }>
           LIAR'S DICE
           <br />
           { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
         <div className="right">     
-          <label id="DashboardRestart" className={ (stage === 0 && round === 0 ? "invisible" : "") }>
+          <label id="DashboardRestart" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
             Restart&nbsp;
             <button onClick={ ()=>{ RestartStage(); }}>R</button>
             <br />
           </label>
           
-          <label id="DashboardQuit" className={ (stage === 0 && round === 0 ? "invisible" : "") }>
+          <label id="DashboardQuit" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
             Quit&nbsp;
             <button onClick={ ()=>{ Quit(); }}>Q</button>
             <br />

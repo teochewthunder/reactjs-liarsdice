@@ -1,6 +1,7 @@
 .App {
   width: 850px;
   height: 600px;
+  overflow: hidden;
   margin: 0 auto 0 auto;
 }
 
