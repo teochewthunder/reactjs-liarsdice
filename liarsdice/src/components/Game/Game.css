@@ -6,6 +6,50 @@
 
 .GameRow {
   width: 550px;
-  height: 140px;
+  height: 135px;
   float: left;
+}
+
+.portrait {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 0 auto;
+}
+
+.meter {
+  width: 100px;
+  height: 15px;
+  margin: 0 auto 0 auto;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.metervalue {
+  width: 100%;
+  height: 100%;
+  float: left;
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.speechballoon {
+  width: 350px;
+  height: 100px;
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+  float: left;
+  border-radius: 10px;
+  background-color: rgb(50, 50, 50);
+  color: rgb(255, 255, 255);
+}
+
+.speechballoon::after {
+  position: absolute;
+  margin: -30px 0px 0px 350px;
+  display: block;
+  width: 20px;
+  font-size: 2em;
+  content: "▶";
+  color: rgb(50, 50, 50);
 }

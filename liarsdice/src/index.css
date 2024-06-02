@@ -22,3 +22,23 @@ code {
 .invisible {
     visibility: hidden;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.width_half {
+  width: 49%;
+}
+
+.width_long {
+  width: 74%;
+}
+
+.width_short {
+  width: 25%;
+}

@@ -83,13 +83,13 @@ function App() {
       </div>
 
       <div id="Dashboard">
-        <div className={ (stage === 0 || round === 0 ? "left invisible" : "left") }>
+        <div className={ (stage === 0 || round === 0 ? "left width_half invisible" : "left width_half") }>
           LIAR'S DICE
           <br />
           { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
-        <div className="right">     
+        <div className="right width_half">     
           <label id="DashboardRestart" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
             { GetLabels("restart", lang) }&nbsp;
             <button onClick={ ()=>{ RestartStage(); }}>&#8634;</button>
@@ -113,7 +113,7 @@ function App() {
       </div>
 
       <div id="Main">
-        <div id="OpponentImage" style={ GetOpponentImage(stage, opponentIntoxication) }>
+        <div id="Opponent" style={ GetOpponentImage(stage, opponentIntoxication) }>
 
         </div> 
 
