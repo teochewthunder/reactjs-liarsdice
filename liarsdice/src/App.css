@@ -10,6 +10,16 @@
   height: 540px;
 }
 
+#Intro button{
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  margin: 10px auto 0 auto;
+  display: block;
+}
+
 .col {
   width: 164px;
   height: 540px;
@@ -70,6 +80,14 @@
   float: left;
 }
 
+#Dashboard button{
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 20px;
+  height: 20px;
+}
+
 #Main {
   width: 100%;
   height: 540px;
@@ -103,12 +121,20 @@
   float: right;
 }
 
+#DashboardQuit, #DashboardRestart {
+  width: 20%;
+}
+
+#DashboardLanguage {
+  width: 100%;
+}
+
 label {
+  margin-top: 5px;
   font-size: 0.8em;
   display: block;
   float: right;
   text-align: right;
-  width: 100%;
 }
 
 div {

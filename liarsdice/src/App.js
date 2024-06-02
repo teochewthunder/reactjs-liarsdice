@@ -63,7 +63,7 @@ function App() {
           
           </div>            
           <div id="IntroStart" className={ (stage === 0 && round === 0 ? "" : "fade") }>
-              <button onClick={ ()=>{ Start(); }}>S</button>
+              <button onClick={ ()=>{ Start(); }}>{ GetLabels("start", lang) } &#9658;</button>
           </div>  
         </div>
 
@@ -89,19 +89,19 @@ function App() {
 
         <div className="right">     
           <label id="DashboardRestart" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
-            Restart&nbsp;
-            <button onClick={ ()=>{ RestartStage(); }}>R</button>
+            { GetLabels("restart", lang) }&nbsp;
+            <button onClick={ ()=>{ RestartStage(); }}>&#8634;</button>
             <br />
           </label>
           
           <label id="DashboardQuit" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
-            Quit&nbsp;
-            <button onClick={ ()=>{ Quit(); }}>Q</button>
+            { GetLabels("quit", lang) }&nbsp;
+            <button onClick={ ()=>{ Quit(); }}>&#9650;</button>
             <br />
           </label>
 
           <label id="DashboardLanguage">
-            Language&nbsp; 
+            { GetLabels("language", lang) }&nbsp; 
             <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
               <option value="cn">CN</option>
               <option value="en">EN</option>
