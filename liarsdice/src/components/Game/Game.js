@@ -28,18 +28,18 @@ function Game(props) {
 			</div>
 
 			<div className="GameRow">
-				<div className="left width_long">
-x
+				<div className="left width_short">
+					<div className="shaker"></div>
 				</div>	
 
-				<div className="right width_short">
+				<div className="right width_long">
 x
-				</div>		
+				</div>	
 			</div>	
 
 			<div className="GameRow">
 				<div className="left width_short">
-x
+					<div className="shaker"></div>
 				</div>	
 
 				<div className="right width_long">
