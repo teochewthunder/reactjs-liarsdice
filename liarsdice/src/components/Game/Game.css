@@ -77,7 +77,7 @@
 
 .shaking {
   animation-name: shakingAnimation;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @keyframes shakingAnimation {
