@@ -69,45 +69,69 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 0 auto;
+  background-image: url(../../img/shaker.png);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.shaking {
+  animation-name: shakingAnimation;
+  animation-duration: 1s;
+}
+
+@keyframes shakingAnimation {
+  0%   { margin: 5px auto 0 auto; }
+  25%  { margin: 0 auto 0 auto; }
+  50%  { margin: 5px auto 0 auto; }
+  75%  { margin: 0 auto 0 auto; }
+  100% { margin: 5px auto 0 auto; }
 }
 
 .dice {
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   border-radius: 5px;
   float: right;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .opponent_dice {
   background-color: rgb(20, 20, 20);
+  border: 3px solid rgb(20, 20, 20);
 }
 
 .player_dice {
   background-color: rgb(255, 255, 250);
+  border: 3px solid rgb(255, 255, 250);
 }
 
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   float: left;
 }
 
-.val1::after {
+.hideDice::after, .val1::after {
   display: block;
   content: "";
-  margin: 2px 0 0 2px;
-  width: 13px;
-  height: 13px;
+  margin: 1px 0 0 1px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
 
-.opponent_dice .val1:after {
+.opponent_dice .val1::after {
   border: 2px solid rgb(200, 200, 200);
   background-color: rgb(180, 180, 180);
 }
 
-.player_dice .val1:after {
+.player_dice .val1::after {
   border: 2px solid rgb(180, 0, 0);
   background-color: rgb(100, 0, 0);
+}
+
+.hideDice::after {
+  border: 2px solid rgb(50, 50, 50);
+  background-color: rgb(30, 30, 30);
 }

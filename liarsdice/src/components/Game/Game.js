@@ -14,6 +14,7 @@ function Game(props) {
 	const [guessQty, setGuessQty] = useState(3);
 	const [guessDice, setGuessDice] = useState(2);
 	const [shake, setShake] = useState(false);
+	const [show, setShow] = useState(false);
 
 	let stage = props.stage;
 
@@ -26,13 +27,14 @@ function Game(props) {
 	}
 
 	const shakeDice = function() {
+		setShow(true);
 		setShake(true);
 		
 		var shaking = setInterval(()=>{
 			var values_opponent = [];
 			var values_player = [];
 
-			for (var i = 0; i <= 5; i++) {
+			for (var i = 0; i < 5; i++) {
 				var val = Math.floor(Math.random() * 5) + 1;
 				values_opponent.push(val);
 				var val = Math.floor(Math.random() * 5) + 1;
@@ -42,10 +44,11 @@ function Game(props) {
 			setOpponentDice(values_opponent);
 			setPlayerDice(values_player);
 		},
-		200);
+		100);
 
 		setTimeout(
 			()=> {
+				setShow(false);
 				setShake(false);
 				clearInterval(shaking);
 			},
@@ -77,7 +80,7 @@ function Game(props) {
 
 				<div className="GameRow">
 					<div className="left width_short">
-						<div className="shaker"></div>
+						<div className={ "shaker " + (shake ? "shaking" : "") }></div>
 					</div>	
 
 					<div className="right width_long">
@@ -86,7 +89,7 @@ function Game(props) {
         						return <div className="dice opponent_dice">
 							    {
 							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-							    		var css = "dot val" + GetDiceDots(dice, dotIndex)
+							    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
 
 		        						return <div className={ css }>
 
@@ -101,7 +104,7 @@ function Game(props) {
 
 				<div className="GameRow">
 					<div className="left width_short">
-						<div className="shaker"></div>
+						<div className={ "shaker " + (shake ? "shaking" : "") }></div>
 					</div>	
 
 					<div className="right width_long">
