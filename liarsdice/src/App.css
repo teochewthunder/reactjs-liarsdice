@@ -88,17 +88,6 @@
   height: 20px;
 }
 
-#Main {
-  width: 100%;
-  height: 600px;
-}
-
-#Opponent {
-  width: 295px;
-  height: 540px;
-  float: left;
-}
-
 #DashboardQuit, #DashboardRestart {
   width: 20%;
 }

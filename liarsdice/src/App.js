@@ -3,43 +3,25 @@ import './App.css';
 import Game from './components/Game';
 
 import GetLabels from './utils/GetLabels';
-import GetOpponentImage from './utils/GetOpponentImage';
 
 function App() {
   const [lang, setLang] = useState("cn");
   const [stage, setStage] = useState(0);
   const [round, setRound] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [playerIntoxication, setPlayerIntoxication] = useState(0);
-  const [opponentIntoxication, setOpponentIntoxication] = useState(0);
-  const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
-  const [opponentDice, setOpponentDice] = useState([1, 1, 1, 1, 1]);
-  const [playerDialog, setPlayerDialog] = useState("");
-  const [opponentDialog, setOpponentDialog] = useState("");
-  const [guessQty, setGuessQty] = useState(3);
-  const [guessDice, setGuessDice] = useState(2);
 
   function RestartStage() {
-    setPaused(false);
     setRound(1);
-    setPlayerIntoxication(0);
-    setOpponentIntoxication(0);
-    setGuessQty(3);
-    setGuessDice(2);
   }
 
   function Quit() {
     setStage(0);
     setRound(0);
-    setPaused(false);
   }
 
   function Start() {
     setStage(1);
-    setPaused(true);
     setTimeout(()=> {
       setRound(1);
-      setPaused(false);
     },
     2000
     );
@@ -111,29 +93,13 @@ function App() {
           </label>
         </div>  
       </div>
-
-      <div id="Main">
-        <div id="Opponent" style={ GetOpponentImage(stage, opponentIntoxication) }>
-
-        </div> 
-
-        <Game 
-          stage = { stage }
-          setStage = { setStage }
-          round = { round }
-          setRound = { setRound }
-          opponentIntoxication = { opponentIntoxication }
-          setOpponentIntoxication = { setOpponentIntoxication }
-          setPlayerIntoxication = { setPlayerIntoxication }
-          playerIntoxication = { playerIntoxication }
-          opponentDice = { opponentDice }
-          playerDice = { playerDice }
-          guessDice = { guessDice }
-          guessQty = { guessQty }
-          setGuessDice = { setGuessDice }
-          setGuessQty = { setGuessQty }
-        />
-      </div>        
+      
+      <Game 
+        stage = { stage }
+        setStage = { setStage }
+        round = { round }
+        setRound = { setRound }
+      />       
     </div>
   );
 }

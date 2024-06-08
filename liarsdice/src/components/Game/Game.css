@@ -1,3 +1,14 @@
+#Main {
+  width: 100%;
+  height: 600px;
+}
+
+#Opponent {
+  width: 295px;
+  height: 540px;
+  float: left;
+}
+
 #Game {
   width: 550px;
   height: 540px;
@@ -56,9 +67,33 @@
 
 .shaker {
   width: 80px;
-  height: 100px;
+  height: 80px;
   margin: 0 auto 0 auto;
-background: radial-gradient(ellipse at left top, hsla(0, 0%, 55%, 1) 0%, hsla(0, 0%, 15%, 1) 60%);
+}
 
-  border-radius: 15px 15px 0px 0px;
+.dice {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  float: right;
+  margin-left: 15px;
+}
+
+.opponent_dice {
+  background-color: rgb(20, 20, 20);
+}
+
+.player_dice {
+  background-color: rgb(255, 255, 250);
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+
+.val1 {
+  border-radius: 50%;
+  background-color: rgb(100, 0, 0);
 }
