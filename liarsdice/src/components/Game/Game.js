@@ -25,6 +25,35 @@ function Game(props) {
 		);	
 	}
 
+	const shakeDice = function() {
+		setShake(true);
+		
+		var shaking = setInterval(()=>{
+			var values_opponent = [];
+			var values_player = [];
+
+			for (var i = 0; i <= 5; i++) {
+				var val = Math.floor(Math.random() * 5) + 1;
+				values_opponent.push(val);
+				var val = Math.floor(Math.random() * 5) + 1;
+				values_player.push(val);
+			}
+
+			setOpponentDice(values_opponent);
+			setPlayerDice(values_player);
+		},
+		200);
+
+		setTimeout(
+			()=> {
+				setShake(false);
+				clearInterval(shaking);
+			},
+			1000
+		);
+	}
+
+
 	return (
 		<div id="Main">
 		    <div id="Opponent" style={ GetOpponentImage(stage, opponentIntoxication) }>
@@ -96,7 +125,9 @@ function Game(props) {
 
 				<div className="GameRow">
 					<div className="left width_long">
-						<div className="speechballoon">test</div>
+						<div className="speechballoon">
+							<button onClick={ ()=>{shakeDice();} }>Shake</button>
+						</div>
 					</div>	
 
 					<div className="right width_short">
