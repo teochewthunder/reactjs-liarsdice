@@ -13,6 +13,7 @@ function Game(props) {
 	const [opponentDialog, setOpponentDialog] = useState("");
 	const [guessQty, setGuessQty] = useState(3);
 	const [guessDice, setGuessDice] = useState(2);
+	const [shake, setShake] = useState(false);
 
 	let stage = props.stage;
 
@@ -57,13 +58,13 @@ function Game(props) {
 							    {
 							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 							    		var css = "dot val" + GetDiceDots(dice, dotIndex)
-							    		console.log(dice, dotIndex, css);
-		        						return <div className={{ css }}>
+
+		        						return <div className={ css }>
 
 		        						</div>
 		    						})
 		    					}
-        						</div>
+		    					</div>
     						})
     					}	        
 					</div>	
@@ -77,16 +78,17 @@ function Game(props) {
 					<div className="right width_long">
 					    {
 					    	playerDice.map(function(dice, diceIndex){
-        						return <div className="dice player_dice"></div>
+        						return <div className="dice player_dice">
 							    {
 							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 							    		var css = "dot val" + GetDiceDots(dice, dotIndex)
-							    		console.log(dice, dotIndex, css);
-		        						return <div className={{ css }}>
+
+		        						return <div className={ css }>
 
 		        						</div>
 		    						})
 		    					}
+		    					</div>
     						})
     					}	
 					</div>	
