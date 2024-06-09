@@ -1,4 +1,4 @@
-const GetDiceDots = (diceval, dotindex) => {
+const GetDiceDots = (diceVal, dotIndex) => {
 	var dots = [
 		[
 			0, 0, 0,
@@ -32,7 +32,7 @@ const GetDiceDots = (diceval, dotindex) => {
 		]
 	];
 
-	return dots[diceval - 1][dotindex];
+	return dots[diceVal - 1][dotIndex];
 }
 
 export default GetDiceDots;	

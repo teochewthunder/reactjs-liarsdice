@@ -3,20 +3,27 @@ import './Game.css';
 
 import GetOpponentImage from '../../utils/GetOpponentImage';
 import GetDiceDots from '../../utils/GetDiceDots';
+import GetLabels from '../../utils/GetLabels';
+import GetPhrases from '../../utils/GetPhrases';
 
 function Game(props) {
 	const [playerIntoxication, setPlayerIntoxication] = useState(0);
 	const [opponentIntoxication, setOpponentIntoxication] = useState(0);
 	const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDice, setOpponentDice] = useState([1, 1, 1, 1, 1]);
-	const [playerDialog, setPlayerDialog] = useState("");
-	const [opponentDialog, setOpponentDialog] = useState("");
+	const [playerDialog, setPlayerDialog] = useState(" ");
+	const [opponentDialog, setOpponentDialog] = useState(GetPhrases(1, "intro", "en"));
 	const [guessQty, setGuessQty] = useState(3);
 	const [guessDice, setGuessDice] = useState(2);
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(false);
 
 	let stage = props.stage;
+	let setStage = props.setStage;
+	let round = props.round;
+	let setRound = props.setRound;
+	let lang = props.lang;
+	let setLang = props.setLang;
 
 	if (stage === 0) {
 		return (
@@ -24,6 +31,16 @@ function Game(props) {
 
 			</div>	    	 
 		);	
+	} else {
+		/*
+		setPlayerIntoxication(0);
+		setOpponentIntoxication(0);
+		setGuessQty(4);
+		setGuessDice(2);
+
+		setOpponentDialog();
+		setPlayerDialog();
+		*/
 	}
 
 	const shakeDice = function() {
@@ -56,7 +73,6 @@ function Game(props) {
 		);
 	}
 
-
 	return (
 		<div id="Main">
 		    <div id="Opponent" style={ GetOpponentImage(stage, opponentIntoxication) }>
@@ -66,7 +82,9 @@ function Game(props) {
 			<div id="Game">
 				<div className="GameRow">
 					<div className="left width_long">
-						<div className="speechballoon">test</div>
+						<div className={ (opponentDialog === "" ? "hidden" : "speechballoon") }>
+							{ opponentDialog }
+						</div>
 					</div>	
 
 					<div className="right width_short">
@@ -128,8 +146,26 @@ function Game(props) {
 
 				<div className="GameRow">
 					<div className="left width_long">
-						<div className="speechballoon">
-							<button onClick={ ()=>{shakeDice();} }>Shake</button>
+						<div className={ (shake ? "hidden" : "speechballoon") }>
+							{ playerDialog }
+							<div id="playerDashboard">
+								<div id="guessDashboard">
+									<div className="left width_long">
+										<div className="left width_half">
+											{ guessQty }
+										</div>
+										<div className="right width_half">
+											{ guessDice }
+										</div>
+									</div>
+									<div className="right width_short">
+										<button>{ GetLabels("guess", lang) } &#8634;</button>
+									</div>
+								</div>
+								<button>{ GetLabels("openup", lang) } &#8634;</button>
+								<button>{ GetLabels("restart", lang) } &#8634;</button>
+								<button>{ GetLabels("startnewround", lang) }&#9658;</button>
+							</div>
 						</div>
 					</div>	
 

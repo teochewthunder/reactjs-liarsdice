@@ -1,5 +1,5 @@
 const GetPhrases = (personality, phraseName, lang) => {
-	let labels = [
+	let phrases = [
 		{ personality: 1, phraseName: "intro", lang: "en", value: "Hello, I'm Little Grass. Please go easy on me!"},
 		{ personality: 1, phraseName: "intro", lang: "cn", value: ""},
 		{ personality: 1, phraseName: "intro", lang: "en", value: "Hello, I'm Little Grass. I'm new at this. Shall we begin?"},
@@ -213,7 +213,7 @@ const GetPhrases = (personality, phraseName, lang) => {
 
 	if (match.length === 0) return "";
 	if (match.length > 1) {
-		var r = Math.foor(Math.rand() * match.length) + 1;
+		var r = Math.floor(Math.random() * match.length);
 		return match[r].value;
 	}
 

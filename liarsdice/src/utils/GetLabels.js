@@ -4,6 +4,8 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "start", lang: "cn", value: ""},
 		{ labelName: "restart", lang: "en", value: "Restart"},
 		{ labelName: "restart", lang: "cn", value: ""},
+		{ labelName: "startnewround", lang: "en", value: "Start New Round"},
+		{ labelName: "startnewround", lang: "cn", value: ""},
 		{ labelName: "quit", lang: "en", value: "Quit"},
 		{ labelName: "quit", lang: "cn", value: ""},
 		{ labelName: "language", lang: "en", value: "Language"},

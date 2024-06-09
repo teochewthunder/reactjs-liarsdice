@@ -9,10 +9,6 @@ function App() {
   const [stage, setStage] = useState(0);
   const [round, setRound] = useState(0);
 
-  function RestartStage() {
-    setRound(1);
-  }
-
   function Quit() {
     setStage(0);
     setRound(0);
@@ -71,13 +67,7 @@ function App() {
           { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
-        <div className="right width_half">     
-          <label id="DashboardRestart" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
-            { GetLabels("restart", lang) }&nbsp;
-            <button onClick={ ()=>{ RestartStage(); }}>&#8634;</button>
-            <br />
-          </label>
-          
+        <div className="right width_half">             
           <label id="DashboardQuit" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
             { GetLabels("quit", lang) }&nbsp;
             <button onClick={ ()=>{ Quit(); }}>&#9650;</button>
@@ -99,6 +89,8 @@ function App() {
         setStage = { setStage }
         round = { round }
         setRound = { setRound }
+        lang = { lang }
+        setLang = { setLang }
       />       
     </div>
   );

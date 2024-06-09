@@ -80,6 +80,11 @@
   float: left;
 }
 
+#Dashboard select{
+  font-size: 8px;
+  margin-top: 5px;
+}
+
 #Dashboard button{
   background-color: rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.8);
@@ -88,20 +93,13 @@
   height: 20px;
 }
 
-#DashboardQuit, #DashboardRestart {
-  width: 20%;
-}
-
-#DashboardLanguage {
-  width: 100%;
-}
-
 label {
   margin-top: 5px;
   font-size: 0.8em;
   display: block;
   float: right;
   text-align: right;
+  width: 20%;
 }
 
 div {
