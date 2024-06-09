@@ -25,6 +25,7 @@ function Game(props) {
 	const [guessDice, setGuessDice] = useState(2);
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(true);
+	const [isPlayerTurn, setIsPlayerTurn] = useState(false);
 
 	if (stage === 0) {
 		return (
@@ -71,6 +72,7 @@ function Game(props) {
 				setShake(false);
 				clearInterval(shaking);
 				setRound(round + 1 - 0.5);
+				setIsPlayerTurn(false);
 			},
 			1000
 		);
@@ -176,7 +178,7 @@ function Game(props) {
 				<div className="GameRow">
 					<div className="left width_long">
 						<div className={ (shake ? "hidden" : "speechballoon") }>
-							<div id="playerDashboard">
+							<div id="playerDashboard" className={ (isPlayerTurn ? "" : "invisible") }>
 								<div id="guessDashboard" className={ (round < 1 ? "hidden" : "") }>
 									<div className="left width_long">
 										<div className="left width_half">
@@ -215,11 +217,10 @@ function Game(props) {
 										<button>{ GetLabels("openup", lang) }</button>
 									</div>
 								</div>
-
-
-								<button>{ GetLabels("restart", lang) } &#8634;</button>
-								<button onClick={ ()=>{ startNewRound(); } } disabled={ (show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 							</div>
+
+							<button>{ GetLabels("restart", lang) } &#8634;</button>
+							<button onClick={ ()=>{ startNewRound(); } } disabled={ (show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	
 
