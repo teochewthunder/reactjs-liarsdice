@@ -34,6 +34,9 @@
   height: 536px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .floatup {
@@ -43,6 +46,7 @@
 
 .introimage1 {
   transition-delay: 0s;
+  background-image: url(img/opponent1_100.png);
 }
 
 .introimage2 {
