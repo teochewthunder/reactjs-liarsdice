@@ -45,24 +45,28 @@
 }
 
 .introimage1 {
-  transition-delay: 0s;
+  transition-delay: 0.2s;
   background-image: url(img/opponent1_100.png);
 }
 
 .introimage2 {
-  transition-delay: 0.2s;
+  transition-delay: 0.4s;
+  background-image: url(img/opponent1_100.png);
 }
 
 .introimage3 {
-  transition-delay: 0.4s;
+  transition-delay: 0.6s;
+  background-image: url(img/opponent1_100.png);
 }
 
 .introimage4 {
   transition-delay: 0.8s;
+  background-image: url(img/opponent1_100.png);
 }
 
 .introimage5 {
   transition-delay: 1s;
+  background-image: url(img/opponent1_100.png);
 }
 
 .fade {
@@ -76,6 +80,9 @@
   height: 200px;
   margin-left: -70px;
   margin-top: -350px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  border: 5px;
 }
 
 #Dashboard {

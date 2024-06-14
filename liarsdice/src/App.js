@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <div id="Intro" className={ (stage > 0 && round > 0 ? "hidden" : "") }>
         <div className="col">
-          <div className={ (stage === 0 ? "introimage introimage1" : "introimage intrimage1 floatup") }>
+          <div className={ (stage === 0 ? "introimage introimage1" : "introimage introimage1 floatup") }>
             
           </div> 
         </div>

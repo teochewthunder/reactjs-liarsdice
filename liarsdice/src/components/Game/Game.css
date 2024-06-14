@@ -7,6 +7,13 @@
   width: 295px;
   height: 540px;
   float: left;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.opponent1_100 {
+  background-image: url(../../img/opponent1_100.png);
 }
 
 #Game {

@@ -1,27 +1,11 @@
-const GetOpponentImage = (stage, intoxication) => {
-	let action = { "type": "open", "qty": 0, "dice": 0};
-	
-	if (stage === 1) {
+const GetOpponentImage = (stage, intoxication) => {	
+	var tiers = [100, 75, 50, 25];
 
+	for (var i = 0; i < tiers.length; i++) {
+		if (intoxication >= tiers[i]) {
+			return "opponent" + stage + "_" + tiers[i];
+		}
 	}
-
-	if (stage === 2) {
-		
-	}
-
-	if (stage === 3) {
-		
-	}
-
-	if (stage === 4) {
-		
-	}
-
-	if (stage === 5) {
-		
-	}
-
-	return action;
 }
 
 export default GetOpponentImage;	

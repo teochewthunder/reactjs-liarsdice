@@ -14,8 +14,8 @@ function Game(props) {
 	let lang = props.lang;
 	let setLang = props.setLang;
 
-	const [playerIntoxication, setPlayerIntoxication] = useState(0);
-	const [opponentIntoxication, setOpponentIntoxication] = useState(0);
+	const [playerIntoxication, setPlayerIntoxication] = useState(100);
+	const [opponentIntoxication, setOpponentIntoxication] = useState(100);
 	const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDice, setOpponentDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDialog, setOpponentDialog] = useState(GetPhrases(stage, "intro", lang));
@@ -106,7 +106,7 @@ function Game(props) {
 
 	return (
 		<div id="Main">
-		    <div id="Opponent" style={ GetOpponentImage(stage, opponentIntoxication) }>
+		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
 
 	        </div> 
 
