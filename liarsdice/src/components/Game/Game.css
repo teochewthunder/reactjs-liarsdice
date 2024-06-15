@@ -4,16 +4,61 @@
 }
 
 #Opponent {
-  width: 295px;
+  width: 290px;
   height: 540px;
   float: left;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  border-radius: 30px;
 }
 
 .opponent1_100 {
   background-image: url(../../img/opponent1_100.png);
+}
+
+.opponent1_75 {
+  background-image: url(../../img/opponent1_75.png);
+}
+
+.opponent1_50 {
+  background-image: url(../../img/opponent1_50.png);
+}
+
+.opponent1_25 {
+  background-image: url(../../img/opponent1_25.png);
+}
+
+.opponent2_100 {
+  background-image: url(../../img/opponent2_100.png);
+}
+
+.opponent2_75 {
+  background-image: url(../../img/opponent2_75.png);
+}
+
+.opponent2_50 {
+  background-image: url(../../img/opponent2_50.png);
+}
+
+.opponent2_25 {
+  background-image: url(../../img/opponent2_25.png);
+}
+
+.opponent3_100 {
+  background-image: url(../../img/opponent3_100.png);
+}
+
+.opponent3_75 {
+  background-image: url(../../img/opponent3_75.png);
+}
+
+.opponent3_50 {
+  background-image: url(../../img/opponent3_50.png);
+}
+
+.opponent3_25 {
+  background-image: url(../../img/opponent3_25.png);
 }
 
 #Game {
