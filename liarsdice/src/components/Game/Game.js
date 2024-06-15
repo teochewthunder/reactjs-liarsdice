@@ -5,6 +5,7 @@ import GetOpponentImage from '../../utils/GetOpponentImage';
 import GetDiceDots from '../../utils/GetDiceDots';
 import GetLabels from '../../utils/GetLabels';
 import GetPhrases from '../../utils/GetPhrases';
+import GetActions from '../../utils/GetActions';
 
 function Game(props) {
 	let stage = props.stage;
@@ -43,7 +44,7 @@ function Game(props) {
 		setPlayerGuessQty(4);
 		setPlayerGuessDice(2);
 		setRound(0.5);
-		setShow(false);
+		setShow(true);
 
 		setOpponentDialog(GetPhrases(1, "intro", lang));
 	};
@@ -75,6 +76,23 @@ function Game(props) {
 				clearInterval(shaking);
 				setRound(round + 1 - 0.5);
 				setIsPlayerTurn(false);
+				var action = GetActions(stage, guessQty, guessDice, opponentDice, opponentIntoxication);
+				
+				if (action.type === "open") {
+					setOpponentDialog(GetLabels("open", lang));
+					setShow(true);
+					//check win condition
+				}
+
+				if (action.type === "guess") {
+					setGuessQty(action.qty);
+					setGuessDice(action.dice);
+					setPlayerGuessQty(action.qty);
+					setPlayerGuessDice(action.dice);
+
+					setOpponentDialog(GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "!");
+					setIsPlayerTurn(true);
+				}
 			},
 			1000
 		);
