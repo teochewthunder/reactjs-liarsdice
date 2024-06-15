@@ -33,18 +33,20 @@ function Game(props) {
 
 			</div>	    	 
 		);	
-	} else {
-			/*
-			GetPhrases(1, "intro", "en")
-			setPlayerIntoxication(0);
-			setOpponentIntoxication(0);
-			setGuessQty(4);
-			setGuessDice(2);
+	} 
 
-			setOpponentDialog(GetPhrases(1, "intro", "en"));
-			setPlayerDialog();
-			*/
-	}
+	const startStage = function() {
+		setPlayerIntoxication(100);
+		setOpponentIntoxication(100);
+		setGuessQty(4);
+		setGuessDice(2);
+		setPlayerGuessQty(4);
+		setPlayerGuessDice(2);
+		setRound(0.5);
+		setShow(false);
+
+		setOpponentDialog(GetPhrases(1, "intro", lang));
+	};
 
 	const startNewRound = function() {
 		setShow(true);
@@ -119,7 +121,7 @@ function Game(props) {
 					</div>	
 
 					<div className="right width_short">
-						<div className="portrait"></div>
+						<div className={ "portrait " + GetOpponentImage(stage, 100) }></div>
 						<br />
 						<div className="meter">
 							<div className="metervalue"></div>
@@ -219,7 +221,7 @@ function Game(props) {
 								</div>
 							</div>
 
-							<button>{ GetLabels("restart", lang) } &#8634;</button>
+							<button onClick={ ()=>{ startStage(); } }>{ GetLabels("restart", lang) } &#8634;</button>
 							<button onClick={ ()=>{ startNewRound(); } } disabled={ (show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	

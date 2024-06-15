@@ -29,7 +29,7 @@
   background-image: url(../../img/opponent1_25.png);
 }
 
-.opponent2_100 {
+/*.opponent2_100 {
   background-image: url(../../img/opponent2_100.png);
 }
 
@@ -43,7 +43,7 @@
 
 .opponent2_25 {
   background-image: url(../../img/opponent2_25.png);
-}
+}*/
 
 .opponent3_100 {
   background-image: url(../../img/opponent3_100.png);
@@ -78,6 +78,9 @@
   height: 80px;
   border-radius: 50%;
   margin: 0 auto 0 auto;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 .meter {
