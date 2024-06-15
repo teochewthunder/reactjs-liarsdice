@@ -89,6 +89,7 @@
   margin: 0 auto 0 auto;
   border-radius: 5px;
   border: 2px solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
 }
 
 .metervalue {
@@ -159,6 +160,10 @@
 .player_dice {
   background-color: rgb(255, 255, 250);
   border: 3px solid rgb(255, 255, 250);
+}
+
+.highlighted_dice {
+  border: 3px solid rgb(255, 255, 0);
 }
 
 .dot {

@@ -50,6 +50,11 @@ function Game(props) {
 	};
 
 	const startNewRound = function() {
+		setGuessQty(4);
+		setGuessDice(2);
+		setPlayerGuessQty(4);
+		setPlayerGuessDice(2);
+
 		setShow(true);
 		setShake(true);
 		
@@ -76,23 +81,7 @@ function Game(props) {
 				clearInterval(shaking);
 				setRound(round + 1 - 0.5);
 				setIsPlayerTurn(false);
-				var action = GetActions(stage, guessQty, guessDice, opponentDice, opponentIntoxication);
-				
-				if (action.type === "open") {
-					setOpponentDialog(GetLabels("open", lang));
-					setShow(true);
-					//check win condition
-				}
-
-				if (action.type === "guess") {
-					setGuessQty(action.qty);
-					setGuessDice(action.dice);
-					setPlayerGuessQty(action.qty);
-					setPlayerGuessDice(action.dice);
-
-					setOpponentDialog(GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "!");
-					setIsPlayerTurn(true);
-				}
+				opponentAction();
 			},
 			1000
 		);
@@ -124,6 +113,65 @@ function Game(props) {
 		return (qty === 6 && dice === 6);
 	};
 
+	const isHighlightedDice = function(dice) {
+		return (show && (dice === guessDice || dice === 1));
+	};
+
+	const opponentAction = function() {
+		var action = GetActions(stage, guessQty, guessDice, opponentDice, opponentIntoxication);
+		
+		if (action.type === "open") {
+			setOpponentDialog(GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "openup", lang));
+			setShow(true);
+			checkWin();
+		}
+
+		if (action.type === "guess") {
+			setGuessQty(action.qty);
+			setGuessDice(action.dice);
+			setPlayerGuessQty(action.qty);
+			setPlayerGuessDice(action.dice);
+
+			setOpponentDialog(GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n\n" + GetPhrases(stage, "yourturn", lang));
+			setIsPlayerTurn(true);
+		}
+	};
+
+	const guess = function() {
+		setGuessQty(playerGuessQty);
+		setGuessDice(playerGuessDice);
+		setIsPlayerTurn(false);
+		opponentAction();
+	};
+
+	const openup = function() {
+		setShow(true);
+		checkWin();
+	};
+
+	const checkWin = function() {
+		var diceQty = 0;
+		for (var i = 0; i < 5; i++) {
+			if (opponentDice[i] === 1 || opponentDice[i] === guessDice) diceQty++;
+			if (playerDice[i] === 1 || playerDice[i] === guessDice) diceQty++;
+		}
+
+		var correctGuess = (diceQty >= guessQty);
+		var playerWin = ((isPlayerTurn && correctGuess) || (!isPlayerTurn && !correctGuess));
+
+		if (playerWin) {
+			setOpponentDialog(GetPhrases(stage, "lose", lang));
+			var intoxication = opponentIntoxication - (30 - (stage * 5));
+			if (intoxication < 0) intoxication = 0;
+			setOpponentIntoxication(intoxication);
+		} else {
+			setOpponentDialog(GetPhrases(stage, "win", lang));
+			var intoxication = playerIntoxication - 10;
+			if (intoxication < 0) intoxication = 0;
+			setPlayerIntoxication(intoxication);
+		}
+	};
+
 	return (
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
@@ -142,7 +190,7 @@ function Game(props) {
 						<div className={ "portrait " + GetOpponentImage(stage, 100) }></div>
 						<br />
 						<div className="meter">
-							<div className="metervalue"></div>
+							<div className="metervalue" style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
 						</div>
 					</div>			
 				</div>
@@ -155,7 +203,7 @@ function Game(props) {
 					<div className="right width_long">
 					    {
 					    	opponentDice.map(function(dice, diceIndex){
-        						return <div className="dice opponent_dice">
+        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
 							    {
 							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 							    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
@@ -179,7 +227,7 @@ function Game(props) {
 					<div className="right width_long">
 					    {
 					    	playerDice.map(function(dice, diceIndex){
-        						return <div className="dice player_dice">
+        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
 							    {
 							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 							    		var css = "dot val" + GetDiceDots(dice, dotIndex)
@@ -233,8 +281,8 @@ function Game(props) {
 										</div>
 									</div>
 									<div className="right width_short">
-										<button disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") }>{ GetLabels("guess", lang) }</button>
-										<button>{ GetLabels("openup", lang) }</button>
+										<button onClick={ ()=>{ guess(); } } disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") }>{ GetLabels("guess", lang) }</button>
+										<button onClick={ ()=>{ openup(); } } disabled={ ((guessQty === 4 && guessDice === 2) || show ? "disabled" : "") }>{ GetLabels("openup", lang) }</button>
 									</div>
 								</div>
 							</div>
@@ -248,7 +296,7 @@ function Game(props) {
 						<div className="portrait"></div>
 						<br />
 						<div className="meter">
-							<div className="metervalue"></div>
+							<div className="metervalue" style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
 						</div>
 					</div>				
 				</div>					
