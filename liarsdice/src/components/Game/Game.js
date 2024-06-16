@@ -140,6 +140,8 @@ function Game(props) {
 			setGuessDice(action.dice);
 			setPlayerGuessQty(action.qty);
 			setPlayerGuessDice(action.dice);
+			console.log('guess',guessQty,guessDice);
+			console.log('playeruess',playerGuessQty,playerGuessDice)
 
 			var dialogStr = (GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n" + GetPhrases(stage, "yourturn", lang));
 			var dialog = dialogStr.split('\n').map(i => {
@@ -162,6 +164,7 @@ function Game(props) {
 	const openup = function() {
 		setTurns(turns + 1);
 		setShow(true);
+		console.log('last guess',guessQty,guessDice);
 		checkWin();
 	};
 
@@ -193,7 +196,7 @@ function Game(props) {
 	return (
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
-
+		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
 	        </div> 
 
 			<div id="Game">
