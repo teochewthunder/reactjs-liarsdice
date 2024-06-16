@@ -27,6 +27,8 @@ function Game(props) {
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(true);
 	const [isPlayerTurn, setIsPlayerTurn] = useState(false);
+	const [stageStarted, setStageStarted] = useState(false);
+	const [turns, setTurns] = useState(0);
 
 	if (stage === 0) {
 		return (
@@ -43,8 +45,10 @@ function Game(props) {
 		setGuessDice(2);
 		setPlayerGuessQty(4);
 		setPlayerGuessDice(2);
-		setRound(0.5);
+		setRound(1);
+		setTurns(0);
 		setShow(true);
+		setStageStarted(true);
 
 		setOpponentDialog(GetPhrases(1, "intro", lang));
 	};
@@ -79,16 +83,13 @@ function Game(props) {
 				setShow(false);
 				setShake(false);
 				clearInterval(shaking);
-				setRound(round + 1 - 0.5);
+				setRound(round + 1);
+				setTurns(0);
 				setIsPlayerTurn(false);
 				opponentAction();
 			},
 			1000
 		);
-	};
-
-	const endRound = function() {
-		setRound(round + 0.5);
 	};
 
 	const adjustPlayerGuessQty = function(inc) {
@@ -114,16 +115,24 @@ function Game(props) {
 	};
 
 	const isHighlightedDice = function(dice) {
-		return (show && (dice === guessDice || dice === 1));
+		return (!shake && show && (dice === guessDice || dice === 1));
 	};
 
 	const opponentAction = function() {
-		var action = GetActions(stage, guessQty, guessDice, opponentDice, opponentIntoxication);
-		
+		var action = GetActions(stage, turns, guessQty, guessDice, opponentDice, opponentIntoxication);
+		setTurns(turns + 1);
+
 		if (action.type === "open") {
-			setOpponentDialog(GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "openup", lang));
+			dialogStr = (GetPhrases(stage, "myturn", lang) + "\n" + GetPhrases(stage, "openup", lang));
+			var dialog = dialogStr.split('\n').map(i => {
+				return <p>{i}</p>
+			});
+
+			setOpponentDialog(dialog);
 			setShow(true);
-			checkWin();
+			window.setTimeout(()=> {
+				checkWin();
+			}, 1000);
 		}
 
 		if (action.type === "guess") {
@@ -132,19 +141,26 @@ function Game(props) {
 			setPlayerGuessQty(action.qty);
 			setPlayerGuessDice(action.dice);
 
-			setOpponentDialog(GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n\n" + GetPhrases(stage, "yourturn", lang));
+			var dialogStr = (GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n" + GetPhrases(stage, "yourturn", lang));
+			var dialog = dialogStr.split('\n').map(i => {
+				return <p>{i}</p>
+			});
+			setOpponentDialog(dialog);
 			setIsPlayerTurn(true);
 		}
 	};
 
 	const guess = function() {
+		setTurns(turns + 1);
 		setGuessQty(playerGuessQty);
 		setGuessDice(playerGuessDice);
+		console.log('last guess',guessQty,guessDice);
 		setIsPlayerTurn(false);
 		opponentAction();
 	};
 
 	const openup = function() {
+		setTurns(turns + 1);
 		setShow(true);
 		checkWin();
 	};
@@ -157,7 +173,9 @@ function Game(props) {
 		}
 
 		var correctGuess = (diceQty >= guessQty);
-		var playerWin = ((isPlayerTurn && correctGuess) || (!isPlayerTurn && !correctGuess));
+		var playerWin = true;
+		if (isPlayerTurn && correctGuess) playerWin = false;
+		if (!isPlayerTurn && !correctGuess) playerWin = false;
 
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
@@ -181,7 +199,7 @@ function Game(props) {
 			<div id="Game">
 				<div className="GameRow">
 					<div className="left width_long">
-						<div className={ (opponentDialog === "" ? "hidden" : "speechballoon") }>
+						<div className={ (opponentDialog === "" ? "hidden" : "speechballoon " + lang) }>
 							{ opponentDialog }
 						</div>
 					</div>	
@@ -288,7 +306,7 @@ function Game(props) {
 							</div>
 
 							<button onClick={ ()=>{ startStage(); } }>{ GetLabels("restart", lang) } &#8634;</button>
-							<button onClick={ ()=>{ startNewRound(); } } disabled={ (show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
+							<button onClick={ ()=>{ startNewRound(); } } disabled={ (stageStarted && show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	
 

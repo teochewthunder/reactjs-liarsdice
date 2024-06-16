@@ -51,7 +51,7 @@
 
 .introimage2 {
   transition-delay: 0.4s;
-  background-image: url(img/opponent1_100.png);
+  background-image: url(img/opponent2_100.png);
 }
 
 .introimage3 {
@@ -61,7 +61,7 @@
 
 .introimage4 {
   transition-delay: 0.8s;
-  background-image: url(img/opponent1_100.png);
+  background-image: url(img/opponent4_100.png);
 }
 
 .introimage5 {

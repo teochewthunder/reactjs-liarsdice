@@ -17,7 +17,7 @@ function App() {
   function Start() {
     setStage(1);
     setTimeout(()=> {
-      setRound(0.5);
+      setRound(1);
     },
     2000
     );

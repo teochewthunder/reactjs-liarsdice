@@ -29,7 +29,7 @@
   background-image: url(../../img/opponent1_25.png);
 }
 
-/*.opponent2_100 {
+.opponent2_100 {
   background-image: url(../../img/opponent2_100.png);
 }
 
@@ -43,7 +43,7 @@
 
 .opponent2_25 {
   background-image: url(../../img/opponent2_25.png);
-}*/
+}
 
 .opponent3_100 {
   background-image: url(../../img/opponent3_100.png);
@@ -59,6 +59,22 @@
 
 .opponent3_25 {
   background-image: url(../../img/opponent3_25.png);
+}
+
+.opponent4_100 {
+  background-image: url(../../img/opponent4_100.png);
+}
+
+.opponent4_75 {
+  background-image: url(../../img/opponent4_75.png);
+}
+
+.opponent4_50 {
+  background-image: url(../../img/opponent4_50.png);
+}
+
+.opponent4_25 {
+  background-image: url(../../img/opponent4_25.png);
 }
 
 #Game {
@@ -103,8 +119,8 @@
   width: 350px;
   height: 100px;
   padding: 10px;
+  font-size: 14px;
   text-align: center;
-  font-size: 2em;
   float: left;
   border-radius: 10px;
   background-color: rgb(50, 50, 50);
@@ -163,7 +179,7 @@
 }
 
 .highlighted_dice {
-  border: 3px solid rgb(255, 255, 0);
+  border: 3px solid rgb(255, 0, 0);
 }
 
 .dot {
