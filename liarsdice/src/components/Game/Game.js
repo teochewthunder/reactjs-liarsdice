@@ -17,7 +17,7 @@ function Game(props) {
 	const [opponentIntoxication, setOpponentIntoxication] = useState(100);
 	const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDice, setOpponentDice] = useState([1, 1, 1, 1, 1]);
-	const [opponentDialog, setOpponentDialog] = useState(GetPhrases(stage, "intro", lang));
+	const [opponentDialog, setOpponentDialog] = useState("");
 	const [playerGuessQty, setPlayerGuessQty] = useState(4);
 	const [playerGuessDice, setPlayerGuessDice] = useState(2);
 	const [guessQty, setGuessQty] = useState(4);
@@ -50,7 +50,7 @@ function Game(props) {
 		setShow(false);
 		setStageStarted(true);
 
-		setOpponentDialog(GetPhrases(1, "intro", lang));
+		setOpponentDialog(GetPhrases(1, "newround", lang));
 	};
 
 	const startNewRound = function() {
@@ -82,13 +82,7 @@ function Game(props) {
 				setRound(round + 1);
 				setTurns(0);
 				setIsPlayerTurn(false);
-
-				setTimeout(
-					()=> {
-						opponentAction();
-					},
-					1000
-				);
+				opponentAction();
 			},
 			1000
 		);	
@@ -100,6 +94,18 @@ function Game(props) {
 		setPlayerGuessQty(4);
 		setPlayerGuessDice(2);
 		setRoundStarted(false);
+		setShow(false);
+
+		if (opponentIntoxication > 0) {
+			setOpponentDialog(GetPhrases(stage, "newround", lang));
+		} else {
+			setStage(stage + 1);
+			setStageStarted(false);
+			setRound(0);
+			setTurns(0);
+			setPlayerIntoxication(100);
+			setOpponentIntoxication(100);
+		}
 	}
 
 	const adjustPlayerGuessQty = function(inc) {
@@ -193,6 +199,8 @@ function Game(props) {
 			var intoxication = opponentIntoxication - (30 - (stage * 5));
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
+
+			if (intoxication == 0) 	setOpponentDialog(GetPhrases(stage, "stagelose", lang));
 		} else {
 			setOpponentDialog(GetPhrases(stage, "win", lang));
 			var intoxication = playerIntoxication - 10;
@@ -208,8 +216,13 @@ function Game(props) {
 		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round);} } >Stage</button>
 		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice);} } >Diice</button>
 		    	
-		    	<button className="btnStartStage" onClick={ ()=>{ startStage(); } }>{ GetLabels((round === 0 ? "" : "re") + "startstage", lang) } &#8634;</button>
+		    	<button className={ stageStarted ? "btnRestartStage" : "hidden" }  onClick={ ()=>{ startStage(); } }>{ GetLabels("restartstage", lang) } &#8634;</button>
 	        </div> 
+
+	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
+	        	<p>{ GetPhrases(stage, "intro", lang) }</p>
+	        	<button className="btnStartStage" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#8634;</button>
+	        </div>
 
 			<div id="Game" className={ stageStarted ? "" : "hidden" }>
 				<div className="GameRow">
@@ -280,7 +293,7 @@ function Game(props) {
 					<div className="left width_long">
 						<div className={ (shake ? "hidden" : "speechballoon") }>
 							<div id="playerDashboard" className={ (isPlayerTurn ? "" : "invisible") }>
-								<div id="guessDashboard" className={ (round < 1 ? "hidden" : "") }>
+								<div id="guessDashboard" className={ (show || shake ? "hidden" : "") }>
 									<div className="left width_long">
 										<div className="left width_half">
 											<div className="guessQty left width_long">
@@ -320,7 +333,7 @@ function Game(props) {
 								</div>
 							</div>
 
-							<button onClick={ ()=>{	endRound();} } className={ (roundStarted ? "" : "hidden") }>End Round</button>
+							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "" : "hidden") }>End Round</button>
 							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	
