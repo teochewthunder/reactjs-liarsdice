@@ -53,11 +53,6 @@ function Game(props) {
 	};
 
 	const startNewRound = function() {
-		setGuessQty(4);
-		setGuessDice(2);
-		setPlayerGuessQty(4);
-		setPlayerGuessDice(2);
-
 		setShow(true);
 		setShake(true);
 		
@@ -98,7 +93,10 @@ function Game(props) {
 	};
 
 	const endRound = function() {
-
+		setGuessQty(4);
+		setGuessDice(2);
+		setPlayerGuessQty(4);
+		setPlayerGuessDice(2);
 	}
 
 	const adjustPlayerGuessQty = function(inc) {
@@ -140,7 +138,7 @@ function Game(props) {
 			setOpponentDialog(dialog);
 			setShow(true);
 			window.setTimeout(()=> {
-				checkWin();
+				checkWin(false);
 			}, 1000);
 		}
 
@@ -171,10 +169,10 @@ function Game(props) {
 
 	const openup = function() {
 		setShow(true);
-		checkWin();
+		checkWin(true);
 	};
 
-	const checkWin = function() {
+	const checkWin = function(isPlayerOpen) {
 		var diceQty = 0;
 		for (var i = 0; i < 5; i++) {
 			if (opponentDice[i] === 1 || opponentDice[i] === guessDice) diceQty++;
@@ -184,8 +182,8 @@ function Game(props) {
 		var correctGuess = (diceQty >= guessQty);
 		console.log(diceQty, guessQty);
 		var playerWin = true;
-		if (isPlayerTurn && correctGuess) playerWin = false;
-		if (!isPlayerTurn && !correctGuess) playerWin = false;
+		if (isPlayerOpen && correctGuess) playerWin = false;
+		if (!isPlayerOpen && !correctGuess) playerWin = false;
 
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
@@ -206,7 +204,7 @@ function Game(props) {
 		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
 		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round);} } >Stage</button>
 		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice);} } >Diice</button>
-		    	{ turns }
+		    	<button onClick={ ()=>{	endRound();} } >End Round</button>
 	        </div> 
 
 			<div id="Game">
