@@ -140,8 +140,6 @@ function Game(props) {
 			setGuessDice(action.dice);
 			setPlayerGuessQty(action.qty);
 			setPlayerGuessDice(action.dice);
-			console.log('guess',guessQty,guessDice);
-			console.log('playeruess',playerGuessQty,playerGuessDice)
 
 			var dialogStr = (GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n" + GetPhrases(stage, "yourturn", lang));
 			var dialog = dialogStr.split('\n').map(i => {
@@ -156,7 +154,6 @@ function Game(props) {
 		setTurns(turns + 1);
 		setGuessQty(playerGuessQty);
 		setGuessDice(playerGuessDice);
-		console.log('last guess',guessQty,guessDice);
 		setIsPlayerTurn(false);
 		opponentAction();
 	};
@@ -164,7 +161,6 @@ function Game(props) {
 	const openup = function() {
 		setTurns(turns + 1);
 		setShow(true);
-		console.log('last guess',guessQty,guessDice);
 		checkWin();
 	};
 
@@ -176,10 +172,11 @@ function Game(props) {
 		}
 
 		var correctGuess = (diceQty >= guessQty);
+		console.log(diceQty, guessQty);
 		var playerWin = true;
 		if (isPlayerTurn && correctGuess) playerWin = false;
 		if (!isPlayerTurn && !correctGuess) playerWin = false;
-
+console.log('payerturn',isPlayerTurn,'correctGuess',correctGuess);
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
 			var intoxication = opponentIntoxication - (30 - (stage * 5));
