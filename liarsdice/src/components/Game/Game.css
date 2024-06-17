@@ -229,3 +229,13 @@
   border: none;
   color: rgb(255, 255, 255);
 }
+
+.btnStartStage {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 350px auto 0 auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
