@@ -10,8 +10,6 @@ import GetActions from '../../utils/GetActions';
 function Game(props) {
 	let stage = props.stage;
 	let setStage = props.setStage;
-	let round = props.round;
-	let setRound = props.setRound;
 	let lang = props.lang;
 	let setLang = props.setLang;
 
@@ -27,6 +25,7 @@ function Game(props) {
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(true);
 	const [isPlayerTurn, setIsPlayerTurn] = useState(false);
+	const [round, setRound] = useState(0);
 	const [stageStarted, setStageStarted] = useState(false);
 	const [turns, setTurns] = useState(0);
 
@@ -74,7 +73,7 @@ function Game(props) {
 			}
 
 			setOpponentDice(values_opponent);
-			setPlayerDice(values_player);
+			setPlayerDice(values_player);		
 		},
 		100);
 
@@ -86,11 +85,21 @@ function Game(props) {
 				setRound(round + 1);
 				setTurns(0);
 				setIsPlayerTurn(false);
-				opponentAction();
+
+				setTimeout(
+					()=> {
+						opponentAction();
+					},
+					1000
+				);
 			},
 			1000
-		);
+		);	
 	};
+
+	const endRound = function() {
+
+	}
 
 	const adjustPlayerGuessQty = function(inc) {
 		var finalQty = playerGuessQty + inc;
@@ -123,7 +132,7 @@ function Game(props) {
 		setTurns(turns + 1);
 
 		if (action.type === "open") {
-			dialogStr = (GetPhrases(stage, "myturn", lang) + "\n" + GetPhrases(stage, "openup", lang));
+			var dialogStr = (GetPhrases(stage, "myturn", lang) + "\n" + GetPhrases(stage, "openup", lang));
 			var dialog = dialogStr.split('\n').map(i => {
 				return <p>{i}</p>
 			});
@@ -141,12 +150,14 @@ function Game(props) {
 			setPlayerGuessQty(action.qty);
 			setPlayerGuessDice(action.dice);
 
-			var dialogStr = (GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n" + GetPhrases(stage, "yourturn", lang));
-			var dialog = dialogStr.split('\n').map(i => {
-				return <p>{i}</p>
-			});
-			setOpponentDialog(dialog);
-			setIsPlayerTurn(true);
+			window.setTimeout(()=> {
+				var dialogStr = (GetPhrases(stage, "myturn", lang) + " " + GetPhrases(stage, "guess", lang) + " " + GetLabels(action.qty + "dice", lang) + GetLabels(action.dice + "s", lang) + "! \n" + GetPhrases(stage, "yourturn", lang));
+				var dialog = dialogStr.split('\n').map(i => {
+					return <p>{i}</p>
+				});
+				setOpponentDialog(dialog);
+				setIsPlayerTurn(true);
+			}, 1000);
 		}
 	};
 
@@ -159,7 +170,6 @@ function Game(props) {
 	};
 
 	const openup = function() {
-		setTurns(turns + 1);
 		setShow(true);
 		checkWin();
 	};
@@ -176,7 +186,7 @@ function Game(props) {
 		var playerWin = true;
 		if (isPlayerTurn && correctGuess) playerWin = false;
 		if (!isPlayerTurn && !correctGuess) playerWin = false;
-console.log('payerturn',isPlayerTurn,'correctGuess',correctGuess);
+
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
 			var intoxication = opponentIntoxication - (30 - (stage * 5));
@@ -194,6 +204,9 @@ console.log('payerturn',isPlayerTurn,'correctGuess',correctGuess);
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
 		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
+		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round);} } >Stage</button>
+		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice);} } >Diice</button>
+		    	{ turns }
 	        </div> 
 
 			<div id="Game">
@@ -305,7 +318,7 @@ console.log('payerturn',isPlayerTurn,'correctGuess',correctGuess);
 								</div>
 							</div>
 
-							<button onClick={ ()=>{ startStage(); } }>{ GetLabels("restart", lang) } &#8634;</button>
+							<button onClick={ ()=>{ startStage(); } }>{ GetLabels((round === 0 ? "" : "re") + "startstage", lang) } &#8634;</button>
 							<button onClick={ ()=>{ startNewRound(); } } disabled={ (stageStarted && show ? "" : "disabled") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	

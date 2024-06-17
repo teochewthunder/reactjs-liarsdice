@@ -7,17 +7,17 @@ import GetLabels from './utils/GetLabels';
 function App() {
   const [lang, setLang] = useState("cn");
   const [stage, setStage] = useState(0);
-  const [round, setRound] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
 
   function Quit() {
     setStage(0);
-    setRound(0);
+    setGameStarted(false);
   }
 
   function Start() {
     setStage(1);
     setTimeout(()=> {
-      setRound(1);
+      setGameStarted(true);
     },
     2000
     );
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <div id="Intro" className={ (stage > 0 && round > 0 ? "hidden" : "") }>
+      <div id="Intro" className={ (gameStarted ? "hidden" : "") }>
         <div className="col">
           <div className={ (stage === 0 ? "introimage introimage1" : "introimage introimage1 floatup") }>
             
@@ -42,7 +42,7 @@ function App() {
           <div className={ (stage === 0 ? "introimage introimage3" : "introimage introimage3 floatup") }>
           
           </div>            
-          <div id="IntroStart" className={ (stage === 0 && round === 0 ? "" : "fade") }>
+          <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
               <button onClick={ ()=>{ Start(); }}>{ GetLabels("start", lang) } &#9658;</button>
           </div>  
         </div>
@@ -61,14 +61,14 @@ function App() {
       </div>
 
       <div id="Dashboard">
-        <div className={ (stage === 0 || round === 0 ? "left width_half invisible" : "left width_half") }>
+        <div className={ (gameStarted ? "left width_half" : "left width_half invisible") }>
           LIAR'S DICE
           <br />
           { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
         <div className="right width_half">             
-          <label id="DashboardQuit" className={ (stage === 0 || round === 0 ? "invisible" : "") }>
+          <label id="DashboardQuit" className={ (!gameStarted ? "invisible" : "") }>
             { GetLabels("quit", lang) }&nbsp;
             <button onClick={ ()=>{ Quit(); }}>&#9650;</button>
             <br />
@@ -87,10 +87,9 @@ function App() {
       <Game 
         stage = { stage }
         setStage = { setStage }
-        round = { round }
-        setRound = { setRound }
         lang = { lang }
         setLang = { setLang }
+        gameStarted = { gameStarted }
       />       
     </div>
   );
