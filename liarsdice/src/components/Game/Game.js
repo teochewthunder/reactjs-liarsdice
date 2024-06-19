@@ -42,6 +42,8 @@ function Game(props) {
 
 	function quit() {
 		setStage(0);
+		setRoundStarted(false);
+		setStageStarted(false);
 		setGameStarted(false);
 	}
 
@@ -91,7 +93,7 @@ function Game(props) {
 				setRound(round + 1);
 				setTurns(0);
 				setIsPlayerTurn(false);
-				opponentAction();
+				opponentAction(guessQty, guessDice);
 			},
 			1000
 		);	
@@ -143,8 +145,9 @@ function Game(props) {
 		return (!shake && show && (dice === guessDice || dice === 1));
 	};
 
-	const opponentAction = function() {
-		var action = GetActions(stage, turns, guessQty, guessDice, opponentDice, opponentIntoxication);
+	const opponentAction = function(currentGuessQty, currentGuessDice) {
+		console.log(currentGuessQty, currentGuessDice);
+		var action = GetActions(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		setTurns(turns + 1);
 
 		if (action.type === "open") {
@@ -156,7 +159,7 @@ function Game(props) {
 			setOpponentDialog(dialog);
 			setShow(true);
 			window.setTimeout(()=> {
-				checkWin(false);
+				checkWin(false, currentGuessQty, currentGuessDice);
 			}, 1000);
 		}
 
@@ -182,30 +185,31 @@ function Game(props) {
 		setGuessQty(playerGuessQty);
 		setGuessDice(playerGuessDice);
 		setIsPlayerTurn(false);
-		opponentAction();
+		opponentAction(playerGuessQty, playerGuessDice);
 	};
 
 	const openup = function() {
 		setShow(true);
-		checkWin(true);
+		checkWin(true, guessQty, guessDice);
 	};
 
-	const checkWin = function(isPlayerOpen) {
+	const checkWin = function(isPlayerOpen, currentGuessQty, currentGuessDice) {
 		var diceQty = 0;
 		for (var i = 0; i < 5; i++) {
-			if (opponentDice[i] === 1 || opponentDice[i] === guessDice) diceQty++;
-			if (playerDice[i] === 1 || playerDice[i] === guessDice) diceQty++;
+			if (opponentDice[i] === 1 || opponentDice[i] === currentGuessDice) diceQty++;
+			if (playerDice[i] === 1 || playerDice[i] === currentGuessDice) diceQty++;
 		}
 
-		var correctGuess = (diceQty >= guessQty);
-		console.log(diceQty, guessQty);
+		var correctGuess = (diceQty >= currentGuessQty);
+		console.log('diceqty',diceQty, 'guessqty', currentGuessQty, 'guessdice', currentGuessDice);
+		console.log('isPlayerOpen', isPlayerOpen, 'correctGuess', correctGuess);
 		var playerWin = true;
 		if (isPlayerOpen && correctGuess) playerWin = false;
 		if (!isPlayerOpen && !correctGuess) playerWin = false;
 
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
-			var intoxication = opponentIntoxication - (30 - (stage * 5));
+			var intoxication = opponentIntoxication - (50 - (stage * 5));
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
 
@@ -301,7 +305,7 @@ function Game(props) {
 				<div className="GameRow">
 					<div className="left width_long">
 						<div className={ (shake ? "hidden" : "speechballoon") }>
-							<div id="playerDashboard" className={ (isPlayerTurn ? "" : "invisible") }>
+							<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "invisible") }>
 								<div id="guessDashboard" className={ (show || shake ? "hidden" : "") }>
 									<div className="left width_long">
 										<div className="left width_half">

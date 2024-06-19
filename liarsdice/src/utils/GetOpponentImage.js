@@ -1,14 +1,21 @@
 const GetOpponentImage = (stage, intoxication) => {	
-	var tiers = [75, 50, 25, 0];
-	var imageStr = "";
+	var tiers = [75, 50, 25];
 
-	for (var i = 0; i < tiers.length; i++) {
-		if (intoxication - 25 <= tiers[i]) {
-			imageStr = "opponent" + stage + "_" + tiers[i];
-		}
-	}
+	if (intoxication === 0) {
+		return "opponent" + stage + "_0";
+	} 
 
-	return imageStr;
+	if (intoxication > 0 && intoxication <= 25) {
+		return "opponent" + stage + "_25";
+	} 	
+
+	if (intoxication > 25 && intoxication <= 50) {
+		return "opponent" + stage + "_50";
+	} 	
+
+	if (intoxication > 50) {
+		return "opponent" + stage + "_75";
+	} 	
 }
 
 export default GetOpponentImage;	

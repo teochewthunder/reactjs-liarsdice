@@ -1,5 +1,4 @@
 const GetActions = (stage, turns, qty, dice, ownDice, intoxication) => {
-	console.log(stage, turns, qty, dice, ownDice, intoxication);
 	let action = { "type": "open", "qty": 0, "dice": 0};
 
 	if ((qty === 4 && dice === 2) || turns === 0) { //generic response
