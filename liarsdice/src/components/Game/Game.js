@@ -10,6 +10,8 @@ import GetActions from '../../utils/GetActions';
 function Game(props) {
 	let stage = props.stage;
 	let setStage = props.setStage;
+	let gameStarted = props.gameStarted;
+	let setGameStarted = props.setGameStarted;
 	let lang = props.lang;
 	let setLang = props.setLang;
 
@@ -38,6 +40,11 @@ function Game(props) {
 		);	
 	} 
 
+	function quit() {
+		setStage(0);
+		setGameStarted(false);
+	}
+
 	const startStage = function() {
 		setPlayerIntoxication(100);
 		setOpponentIntoxication(100);
@@ -45,6 +52,8 @@ function Game(props) {
 		setGuessDice(2);
 		setPlayerGuessQty(4);
 		setPlayerGuessDice(2);
+		setOpponentDice([1, 1, 1, 1, 1]);
+		setPlayerDice([1, 1, 1, 1, 1]);
 		setRound(1);
 		setTurns(0);
 		setShow(false);
@@ -216,7 +225,7 @@ function Game(props) {
 		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round);} } >Stage</button>
 		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice);} } >Diice</button>
 		    	
-		    	<button className={ stageStarted ? "btnRestartStage" : "hidden" }  onClick={ ()=>{ startStage(); } }>{ GetLabels("restartstage", lang) } &#8634;</button>
+		    	<button className={ gameStarted ? "btnQuit" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
 
 	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>

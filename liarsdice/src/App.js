@@ -9,12 +9,7 @@ function App() {
   const [stage, setStage] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
-  function Quit() {
-    setStage(0);
-    setGameStarted(false);
-  }
-
-  function Start() {
+  function start() {
     setStage(1);
     setTimeout(()=> {
       setGameStarted(true);
@@ -43,7 +38,7 @@ function App() {
           
           </div>            
           <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
-              <button onClick={ ()=>{ Start(); }}>{ GetLabels("start", lang) } &#9658;</button>
+              <button onClick={ ()=>{ start(); }}>{ GetLabels("start", lang) } &#9658;</button>
           </div>  
         </div>
 
@@ -68,12 +63,6 @@ function App() {
         </div>
 
         <div className="right width_half">             
-          <label id="DashboardQuit" className={ (!gameStarted ? "invisible" : "") }>
-            { GetLabels("quit", lang) }&nbsp;
-            <button onClick={ ()=>{ Quit(); }}>&#9650;</button>
-            <br />
-          </label>
-
           <label id="DashboardLanguage">
             { GetLabels("language", lang) }&nbsp; 
             <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
@@ -87,9 +76,10 @@ function App() {
       <Game 
         stage = { stage }
         setStage = { setStage }
+        gameStarted = { gameStarted }
+        setGameStarted = { setGameStarted }
         lang = { lang }
         setLang = { setLang }
-        gameStarted = { gameStarted }
       />       
     </div>
   );
