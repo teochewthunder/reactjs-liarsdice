@@ -40,6 +40,38 @@ function Game(props) {
 		);	
 	} 
 
+	if (stage === 6) {
+		return (
+			<div id="Champion">
+				<h1>YOU ARE THE CHAMPION!</h1>
+				<div className="final">
+					<div className={ "profile " + GetOpponentImage(1, 0) }></div>
+					<div className="words"><b>{ GetLabels("opponent1", lang) }</b><br />"{ GetPhrases(1, "stagelose", lang) }"</div>
+				</div>
+
+				<div className="final">
+					<div className={ "profile " + GetOpponentImage(2, 0) }></div>
+					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+				</div>
+
+				<div className="final">
+					<div className={ "profile " + GetOpponentImage(3, 0) }></div>
+					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+				</div>
+
+				<div className="final">
+					<div className={ "profile " + GetOpponentImage(4, 0) }></div>
+					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+				</div>
+
+				<div className="final">
+					<div className={ "profile " + GetOpponentImage(5, 0) }></div>
+					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+				</div>
+			</div>	    	 
+		);	
+	} 
+
 	function quit() {
 		setStage(0);
 		setRoundStarted(false);

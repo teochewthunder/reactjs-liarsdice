@@ -261,7 +261,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
@@ -270,5 +270,31 @@
 }
 
 .btnQuit {
-  margin: 350px auto 0 auto;
+  margin: 10px auto 0 10px;
+}
+
+#Champion {
+  width: 100%;
+  height: 200px;
+  float: left;
+}
+
+.final {
+  width: 20%;
+  float: left;
+}
+
+.final .profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.final .words {
+  text-align: center;
+  padding: 1em;
+  font-size: 2em;
 }

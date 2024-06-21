@@ -12,6 +12,8 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "quit", lang: "cn", value: "退出"},
 		{ labelName: "language", lang: "en", value: "Language"},
 		{ labelName: "language", lang: "cn", value: "语言"},
+		{ labelName: "dialogSpeed", lang: "en", value: "Dialog Speed"},
+		{ labelName: "dialogSpeed", lang: "cn", value: ""},
 		{ labelName: "stage1", lang: "en", value: "STAGE ONE"},
 		{ labelName: "stage1", lang: "cn", value: "第一阶段"},
 		{ labelName: "stage2", lang: "en", value: "STAGE TWO"},

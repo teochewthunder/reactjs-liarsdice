@@ -6,7 +6,7 @@ import GetLabels from './utils/GetLabels';
 
 function App() {
   const [lang, setLang] = useState("cn");
-  const [dialogSpeed, setDialogSpeed] = useState(1500);
+  const [dialogSpeed, setDialogSpeed] = useState(500);
   const [stage, setStage] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -69,6 +69,15 @@ function App() {
             <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
               <option value="cn">CN</option>
               <option value="en">EN</option>
+            </select>
+          </label>
+
+          <label id="DashboardDialogSpeed">
+            { GetLabels("dialogSpeed", lang) }&nbsp; 
+            <select onChange={ (e)=>{ setDialogSpeed(e.currentTarget.value); }}>
+              <option value="500">Fast</option>
+              <option value="1000">Medium</option>
+              <option value="1500">Slow</option>
             </select>
           </label>
         </div>  
