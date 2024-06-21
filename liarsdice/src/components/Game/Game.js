@@ -61,7 +61,7 @@ function Game(props) {
 		setShow(false);
 		setStageStarted(true);
 
-		setOpponentDialog(GetPhrases(1, "newround", lang));
+		setOpponentDialog(GetPhrases(stage, "newround", lang));
 	};
 
 	const startNewRound = function() {
@@ -161,7 +161,7 @@ function Game(props) {
 			setShow(true);
 			window.setTimeout(()=> {
 				checkWin(false, currentGuessQty, currentGuessDice);
-			}, dialogSpeed);
+			}, dialogSpeed * 2);
 		}
 
 		if (action.type === "guess") {
@@ -177,21 +177,29 @@ function Game(props) {
 				});
 				setOpponentDialog(dialog);
 				setIsPlayerTurn(true);
-			}, dialogSpeed);
+			}, dialogSpeed * 2);
 		}
 	};
 
 	const guess = function() {
-		setTurns(turns + 1);
-		setGuessQty(playerGuessQty);
-		setGuessDice(playerGuessDice);
-		setIsPlayerTurn(false);
-		opponentAction(playerGuessQty, playerGuessDice);
+		setOpponentDialog(GetPhrases(stage, "doubt", lang));
+
+		window.setTimeout(()=> {
+			setTurns(turns + 1);
+			setGuessQty(playerGuessQty);
+			setGuessDice(playerGuessDice);
+			setIsPlayerTurn(false);
+			opponentAction(playerGuessQty, playerGuessDice);
+		}, dialogSpeed);
 	};
 
 	const openup = function() {
-		setShow(true);
-		checkWin(true, guessQty, guessDice);
+		setOpponentDialog(GetPhrases(stage, "doubt", lang));
+
+		window.setTimeout(()=> {
+			setShow(true);
+			checkWin(true, guessQty, guessDice);
+		}, dialogSpeed);
 	};
 
 	const checkWin = function(isPlayerOpen, currentGuessQty, currentGuessDice) {

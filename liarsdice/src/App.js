@@ -6,7 +6,7 @@ import GetLabels from './utils/GetLabels';
 
 function App() {
   const [lang, setLang] = useState("cn");
-  const [dialogSpeed, setDialogSpeed] = useState(500);
+  const [dialogSpeed, setDialogSpeed] = useState(1500);
   const [stage, setStage] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
