@@ -13,7 +13,7 @@ function Game(props) {
 	let gameStarted = props.gameStarted;
 	let setGameStarted = props.setGameStarted;
 	let lang = props.lang;
-	let setLang = props.setLang;
+	let dialogSpeed = props.dialogSpeed;
 
 	const [playerIntoxication, setPlayerIntoxication] = useState(100);
 	const [opponentIntoxication, setOpponentIntoxication] = useState(100);
@@ -160,7 +160,7 @@ function Game(props) {
 			setShow(true);
 			window.setTimeout(()=> {
 				checkWin(false, currentGuessQty, currentGuessDice);
-			}, 1000);
+			}, dialogSpeed);
 		}
 
 		if (action.type === "guess") {
@@ -176,7 +176,7 @@ function Game(props) {
 				});
 				setOpponentDialog(dialog);
 				setIsPlayerTurn(true);
-			}, 1000);
+			}, dialogSpeed);
 		}
 	};
 
