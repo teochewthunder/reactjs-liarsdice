@@ -116,6 +116,7 @@ function Game(props) {
 			setTurns(0);
 			setPlayerIntoxication(100);
 			setOpponentIntoxication(100);
+			setOpponentDialog(GetPhrases(stage, "intro", lang));
 		}
 	}
 
