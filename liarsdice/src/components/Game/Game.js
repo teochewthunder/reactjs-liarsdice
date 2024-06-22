@@ -26,7 +26,7 @@ function Game(props) {
 	const [guessDice, setGuessDice] = useState(2);
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(false);
-	const [isPlayerTurn, setIsPlayerTurn] = useState(false);
+	const [isPlayerTurn, setIsPlayerTurn] = useState(true);
 	const [round, setRound] = useState(0);
 	const [stageStarted, setStageStarted] = useState(false);
 	const [roundStarted, setRoundStarted] = useState(false);
@@ -103,7 +103,6 @@ function Game(props) {
 		setShow(true);
 		setShake(true);
 		setRoundStarted(true);
-		setIsPlayerTurn(!isPlayerTurn);
 		
 		var shaking = setInterval(()=>{
 			var values_opponent = [];
@@ -128,8 +127,8 @@ function Game(props) {
 				clearInterval(shaking);
 				setRound(round + 1);
 				setTurns(0);
-				
-console.log('test new round', isPlayerTurn)
+				setIsPlayerTurn(true);
+
 				if (isPlayerTurn) {
 					setOpponentDialog(GetPhrases(stage, "yourturn", lang));
 				} else {
