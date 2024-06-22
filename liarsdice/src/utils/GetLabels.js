@@ -13,7 +13,13 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "language", lang: "en", value: "Language"},
 		{ labelName: "language", lang: "cn", value: "语言"},
 		{ labelName: "dialogSpeed", lang: "en", value: "Dialog Speed"},
-		{ labelName: "dialogSpeed", lang: "cn", value: ""},
+		{ labelName: "dialogSpeed", lang: "cn", value: "对话速度"},
+		{ labelName: "fast", lang: "en", value: "Fast"},
+		{ labelName: "fast", lang: "cn", value: "快"},
+		{ labelName: "medium", lang: "en", value: "Medium"},
+		{ labelName: "medium", lang: "cn", value: "中"},
+		{ labelName: "slow", lang: "en", value: "Slow"},
+		{ labelName: "slow", lang: "cn", value: "慢"},
 		{ labelName: "stage1", lang: "en", value: "STAGE ONE"},
 		{ labelName: "stage1", lang: "cn", value: "第一阶段"},
 		{ labelName: "stage2", lang: "en", value: "STAGE TWO"},
@@ -70,7 +76,8 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "9dice", lang: "cn", value: "九个"},
 		{ labelName: "10dice", lang: "en", value: "Ten"},
 		{ labelName: "10dice", lang: "cn", value: "十个"},	
-		{ labelName: "", lang: "", value: ""}
+		{ labelName: "final", lang: "en", value: "YOU ARE THE CHAMPION!"},
+		{ labelName: "final", lang: "cn", value: "你是冠军!"}
 	];
 
 	let match = labels.filter((x)=> { return (x.labelName === labelName && x.lang === lang); });

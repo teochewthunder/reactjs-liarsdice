@@ -43,7 +43,11 @@ function Game(props) {
 	if (stage === 6) {
 		return (
 			<div id="Champion">
-				<h1>YOU ARE THE CHAMPION!</h1>
+				<h1>{ GetLabels("final", lang) }</h1>
+				<p>
+					<button className="btnFinalQuit"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
+				</p>
+
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(1, 0) }></div>
 					<div className="words"><b>{ GetLabels("opponent1", lang) }</b><br />"{ GetPhrases(1, "stagelose", lang) }"</div>
@@ -68,9 +72,6 @@ function Game(props) {
 					<div className={ "profile " + GetOpponentImage(5, 0) }></div>
 					<div className="words"><b>{ GetLabels("opponent5", lang) }</b><br />"{ GetPhrases(5, "stagelose", lang) }"</div>
 				</div>
-				<p>
-					<button className="btnQuit"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
-				</p>
 			</div>	    	 
 		);	
 	} 
@@ -274,11 +275,11 @@ function Game(props) {
 	return (
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
+		    	<button className={ gameStarted ? "btnQuit" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
 		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round, 'isPlayerTurn', isPlayerTurn);} } >Stage</button>
 		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice, show, shake);} } >Diice</button>
 		    	
-		    	<button className={ gameStarted ? "btnQuit" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
 
 	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>

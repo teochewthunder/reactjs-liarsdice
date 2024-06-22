@@ -75,9 +75,9 @@ function App() {
           <label id="DashboardDialogSpeed">
             { GetLabels("dialogSpeed", lang) }&nbsp; 
             <select onChange={ (e)=>{ setDialogSpeed(e.currentTarget.value); }}>
-              <option value="500">Fast</option>
-              <option value="1000">Medium</option>
-              <option value="1500">Slow</option>
+              <option value="500">{ GetLabels("fast", lang) }</option>
+              <option value="1000">{ GetLabels("medium", lang) }</option>
+              <option value="1500">{ GetLabels("slow", lang) }</option>
             </select>
           </label>
         </div>  
