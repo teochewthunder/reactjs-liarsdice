@@ -60,7 +60,7 @@ function App() {
         <div className={ (gameStarted ? "left width_half" : "left width_half invisible") }>
           LIAR'S DICE
           <br />
-          { stage === 0 ? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
+          { stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
         </div>
 
         <div className="right width_half">             

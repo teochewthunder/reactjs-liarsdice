@@ -51,23 +51,26 @@ function Game(props) {
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(2, 0) }></div>
-					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+					<div className="words"><b>{ GetLabels("opponent2", lang) }</b><br />"{ GetPhrases(2, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(3, 0) }></div>
-					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+					<div className="words"><b>{ GetLabels("opponent3", lang) }</b><br />"{ GetPhrases(3, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(4, 0) }></div>
-					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+					<div className="words"><b>{ GetLabels("opponent4", lang) }</b><br />"{ GetPhrases(4, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(5, 0) }></div>
-					<div className="words">{ GetPhrases(1, "stagelose", lang) }</div>
+					<div className="words"><b>{ GetLabels("opponent5", lang) }</b><br />"{ GetPhrases(5, "stagelose", lang) }"</div>
 				</div>
+				<p>
+					<button className="btnQuit"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
+				</p>
 			</div>	    	 
 		);	
 	} 
@@ -100,6 +103,7 @@ function Game(props) {
 		setShow(true);
 		setShake(true);
 		setRoundStarted(true);
+		setIsPlayerTurn(!isPlayerTurn);
 		
 		var shaking = setInterval(()=>{
 			var values_opponent = [];
@@ -124,8 +128,13 @@ function Game(props) {
 				clearInterval(shaking);
 				setRound(round + 1);
 				setTurns(0);
-				setIsPlayerTurn(false);
-				opponentAction(guessQty, guessDice);
+				
+console.log('test new round', isPlayerTurn)
+				if (isPlayerTurn) {
+					setOpponentDialog(GetPhrases(stage, "yourturn", lang));
+				} else {
+					opponentAction(guessQty, guessDice);
+				}
 			},
 			1000
 		);	
@@ -250,7 +259,7 @@ function Game(props) {
 
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
-			var intoxication = opponentIntoxication - (50 - (stage * 5));
+			var intoxication = opponentIntoxication - (40 - (stage * 5));
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
 
@@ -267,8 +276,8 @@ function Game(props) {
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
 		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
-		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round);} } >Stage</button>
-		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice);} } >Diice</button>
+		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round, 'isPlayerTurn', isPlayerTurn);} } >Stage</button>
+		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice, show, shake);} } >Diice</button>
 		    	
 		    	<button className={ gameStarted ? "btnQuit" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
@@ -347,7 +356,7 @@ function Game(props) {
 					<div className="left width_long">
 						<div className={ (shake ? "hidden" : "speechballoon") }>
 							<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "invisible") }>
-								<div id="guessDashboard" className={ (show || shake ? "hidden" : "") }>
+								<div id="guessDashboard" className={ (!show && !shake && isPlayerTurn ? "" : "hidden") }>
 									<div className="left width_long">
 										<div className="left width_half">
 											<div className="guessQty left width_long">
