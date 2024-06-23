@@ -68,7 +68,7 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 2, phraseName: "myturn", lang: "cn", value: ""},
 		{ personality: 2, phraseName: "myturn", lang: "en", value: "Give me a moment. I need to think."},
 		{ personality: 2, phraseName: "myturn", lang: "cn", value: ""},
-		{ personality: 3, phraseName: "myturn", lang: "en", value: "Daring, I'm taking my turn now!"},
+		{ personality: 3, phraseName: "myturn", lang: "en", value: "Darling, I'm taking my turn now!"},
 		{ personality: 3, phraseName: "myturn", lang: "cn", value: ""},
 		{ personality: 3, phraseName: "myturn", lang: "en", value: "It's my turn, handsome!"},
 		{ personality: 3, phraseName: "myturn", lang: "cn", value: ""},
@@ -138,7 +138,7 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 4, phraseName: "openup", lang: "cn", value: ""},
 		{ personality: 5, phraseName: "openup", lang: "en", value: "I just don't believe you. Open up!"},
 		{ personality: 5, phraseName: "openup", lang: "cn", value: ""},
-		{ personality: 5, phraseName: "openup", lang: "en", value: "Show your damn dice!"},
+		{ personality: 5, phraseName: "openup", lang: "en", value: "You're such a liar. Show your damn dice!"},
 		{ personality: 5, phraseName: "openup", lang: "cn", value: ""},
 		{ personality: 1, phraseName: "win", lang: "en", value: "Looks like I've won! Please have a drink."},
 		{ personality: 1, phraseName: "win", lang: "cn", value: ""},
@@ -164,7 +164,7 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 1, phraseName: "lose", lang: "cn", value: ""},
 		{ personality: 1, phraseName: "lose", lang: "en", value: "Please be gentle! I'll drink."},
 		{ personality: 1, phraseName: "lose", lang: "cn", value: ""},
-		{ personality: 2, phraseName: "lose", lang: "en", value: "Oops! I lost this round!"},
+		{ personality: 2, phraseName: "lose", lang: "en", value: "Rascal! You're bullying me!"},
 		{ personality: 2, phraseName: "lose", lang: "cn", value: ""},
 		{ personality: 2, phraseName: "lose", lang: "en", value: "You're so annoying! You really go all out!"},
 		{ personality: 2, phraseName: "lose", lang: "cn", value: ""},
@@ -216,9 +216,9 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 4, phraseName: "stagelose", lang: "cn", value: ""},
 		{ personality: 4, phraseName: "stagelose", lang: "en", value: "It was a good game. Thank you!"},
 		{ personality: 4, phraseName: "stagelose", lang: "cn", value: ""},
-		{ personality: 5, phraseName: "stagelose", lang: "en", value: "I don't believe this!"},
+		{ personality: 5, phraseName: "stagelose", lang: "en", value: "I don't believe this! How could I have lost to you?!"},
 		{ personality: 5, phraseName: "stagelose", lang: "cn", value: ""},
-		{ personality: 5, phraseName: "stagelose", lang: "en", value: "How could I have lost to you?!"},
+		{ personality: 5, phraseName: "stagelose", lang: "en", value: "I was off-form today. You won't be so lucky next time!"},
 		{ personality: 5, phraseName: "stagelose", lang: "cn", value: ""}
 	];
 

@@ -10,16 +10,6 @@
   height: 540px;
 }
 
-#Intro button{
-  background-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px 5px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
-  margin: 10px auto 0 auto;
-  display: block;
-}
-
 .col {
   width: 164px;
   height: 540px;
@@ -29,7 +19,7 @@
   overflow: hidden;
 }
 
-.col .introimage{
+.col .introimage {
   width: 160px;
   height: 536px;
   border-radius: 10px;
@@ -91,13 +81,13 @@
   float: left;
 }
 
-#Dashboard select{
+#Dashboard select {
   font-size: 8px;
   margin-top: 5px;
   width: 5em;
 }
 
-#Dashboard button{
+#Dashboard button {
   background-color: rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.8);
   border: none;
@@ -112,6 +102,50 @@ label {
   float: right;
   text-align: right;
   width: 100%;
+}
+
+.actionButton {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  margin: 0 auto 0 auto;
+  display: block;
+}
+
+.actionButton:disabled {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(55, 55, 55, 0.8);
+  border: 1px solid rgba(55, 55, 55, 0.8);
+}
+
+.logo {
+  background-image: url(img/logo.png);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;  
+}
+
+#IntroStart .logo {
+  width: 250px;
+  height: 150px;
+}
+
+#Dashboard .logo {
+  width: 100px;
+  height: 50px;
+  float: left;
+}
+
+#Dashboard .stage {
+  width: 200px;
+  float: left;
+  font-size: 16px;
+}
+
+#Dashboard .stage b{
+  font-size: 1.5em;
 }
 
 div {

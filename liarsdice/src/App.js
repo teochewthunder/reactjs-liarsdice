@@ -39,7 +39,12 @@ function App() {
           
           </div>            
           <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
-              <button onClick={ ()=>{ start(); }}>{ GetLabels("start", lang) } &#9658;</button>
+              <div className="logo">
+
+              </div>
+              <div className="button">
+                <button onClick={ ()=>{ start(); }} className="actionButton" >{ GetLabels("start", lang) } &#9658;</button>
+              </div> 
           </div>  
         </div>
 
@@ -58,9 +63,11 @@ function App() {
 
       <div id="Dashboard">
         <div className={ (gameStarted ? "left width_half" : "left width_half invisible") }>
-          LIAR'S DICE
-          <br />
-          { stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " + GetLabels("opponent" + stage, lang)}
+          <div className="logo"></div>
+          <div className="stage">
+            <small>{ stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " }</small>
+            <br /><b>{ stage === 0 || stage === 6? "" : GetLabels("opponent" + stage, lang) }</b>
+          </div> 
         </div>
 
         <div className="right width_half">             

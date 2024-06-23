@@ -20,9 +20,9 @@ function Game(props) {
 	const [playerDice, setPlayerDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDice, setOpponentDice] = useState([1, 1, 1, 1, 1]);
 	const [opponentDialog, setOpponentDialog] = useState("");
-	const [playerGuessQty, setPlayerGuessQty] = useState(4);
+	const [playerGuessQty, setPlayerGuessQty] = useState(3);
 	const [playerGuessDice, setPlayerGuessDice] = useState(2);
-	const [guessQty, setGuessQty] = useState(4);
+	const [guessQty, setGuessQty] = useState(3);
 	const [guessDice, setGuessDice] = useState(2);
 	const [shake, setShake] = useState(false);
 	const [show, setShow] = useState(false);
@@ -45,7 +45,7 @@ function Game(props) {
 			<div id="Champion">
 				<h1>{ GetLabels("final", lang) }</h1>
 				<p>
-					<button className="btnFinalQuit"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
+					<button className="btnFinalQuit actionButton"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 				</p>
 
 				<div className="final">
@@ -86,9 +86,9 @@ function Game(props) {
 	const startStage = function() {
 		setPlayerIntoxication(100);
 		setOpponentIntoxication(100);
-		setGuessQty(4);
+		setGuessQty(3);
 		setGuessDice(2);
-		setPlayerGuessQty(4);
+		setPlayerGuessQty(3);
 		setPlayerGuessDice(2);
 		setOpponentDice([1, 1, 1, 1, 1]);
 		setPlayerDice([1, 1, 1, 1, 1]);
@@ -141,9 +141,9 @@ function Game(props) {
 	};
 
 	const endRound = function() {
-		setGuessQty(4);
+		setGuessQty(3);
 		setGuessDice(2);
-		setPlayerGuessQty(4);
+		setPlayerGuessQty(3);
 		setPlayerGuessDice(2);
 		setRoundStarted(false);
 		setShow(false);
@@ -176,7 +176,7 @@ function Game(props) {
 	};
 
 	const isValidGuess = function(qty, dice) {
-		return (qty > guessQty || dice > guessDice);
+		return ((qty > guessQty || dice > guessDice) && qty > 3);
 	};
 
 	const isMaximumGuess = function(qty, dice) {
@@ -259,7 +259,7 @@ function Game(props) {
 
 		if (playerWin) {
 			setOpponentDialog(GetPhrases(stage, "lose", lang));
-			var intoxication = opponentIntoxication - (40 - (stage * 5));
+			var intoxication = opponentIntoxication - (35 - (stage * 5));
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
 
@@ -275,16 +275,16 @@ function Game(props) {
 	return (
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
-		    	<button className={ gameStarted ? "btnQuit" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
 		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round, 'isPlayerTurn', isPlayerTurn);} } >Stage</button>
 		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice, show, shake);} } >Diice</button>
 		    	
+		    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
 
 	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
 	        	<p>{ GetPhrases(stage, "intro", lang) }</p>
-	        	<button className="btnStartStage" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#8634;</button>
+	        	<button className="btnStartStage actionButton" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#9658;</button>
 	        </div>
 
 			<div id="Game" className={ stageStarted ? "" : "hidden" }>
@@ -355,7 +355,7 @@ function Game(props) {
 				<div className="GameRow">
 					<div className="left width_long">
 						<div className={ (shake ? "hidden" : "speechballoon") }>
-							<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "invisible") }>
+							<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "hidden") }>
 								<div id="guessDashboard" className={ (!show && !shake && isPlayerTurn ? "" : "hidden") }>
 									<div className="left width_long">
 										<div className="left width_half">
@@ -390,14 +390,14 @@ function Game(props) {
 										</div>
 									</div>
 									<div className="right width_short">
-										<button onClick={ ()=>{ guess(); } } disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") }>{ GetLabels("guess", lang) }</button>
-										<button onClick={ ()=>{ openup(); } } disabled={ ((guessQty === 4 && guessDice === 2) || show ? "disabled" : "") }>{ GetLabels("openup", lang) }</button>
+										<button onClick={ ()=>{ guess(); } } disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") } className="actionButton">{ GetLabels("guess", lang) }</button>
+										<button onClick={ ()=>{ openup(); } } disabled={ ((guessQty === 3 && guessDice === 2) || show ? "disabled" : "") } className="actionButton">{ GetLabels("openup", lang) }</button>
 									</div>
 								</div>
 							</div>
 
-							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "" : "hidden") }>End Round</button>
-							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "") }>{ GetLabels("startnewround", lang) }&#9658;</button>
+							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "actionButton" : "hidden") }>End Round</button>
+							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) }&#9658;</button>
 						</div>
 					</div>	
 
