@@ -275,15 +275,11 @@ function Game(props) {
 	return (
 		<div id="Main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
-		    	<button onClick={ ()=>{	console.log('guess',guessQty,guessDice);console.log('playeruess',playerGuessQty,playerGuessDice);} } >Test</button>
-		    	<button onClick={ ()=>{	console.log('stage',stage,'round',round, 'isPlayerTurn', isPlayerTurn);} } >Stage</button>
-		    	<button onClick={ ()=>{	console.log(opponentDice, playerDice, show, shake);} } >Diice</button>
-		    	
 		    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
 
 	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
-	        	<p>{ GetPhrases(stage, "intro", lang) }</p>
+	        	<p>"{ GetPhrases(stage, "intro", lang) }"</p>
 	        	<button className="btnStartStage actionButton" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#9658;</button>
 	        </div>
 
@@ -396,8 +392,8 @@ function Game(props) {
 								</div>
 							</div>
 
-							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "actionButton" : "hidden") }>End Round</button>
-							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) }&#9658;</button>
+							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "actionButton" : "hidden") }>{ GetLabels("endround", lang) } &#9673;</button>
+							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) } &#9658;</button>
 						</div>
 					</div>	
 
