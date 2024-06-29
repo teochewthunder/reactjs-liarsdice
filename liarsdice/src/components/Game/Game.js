@@ -133,7 +133,7 @@ function Game(props) {
 				if (isPlayerTurn) {
 					setOpponentDialog(GetPhrases(stage, "yourturn", lang));
 				} else {
-					opponentAction(guessQty, guessDice);
+					opponentAction(4, 2);
 				}
 			},
 			1000
@@ -188,7 +188,7 @@ function Game(props) {
 	};
 
 	const opponentAction = function(currentGuessQty, currentGuessDice) {
-		console.log(currentGuessQty, currentGuessDice);
+		console.log(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		var action = GetActions(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		setTurns(turns + 1);
 
@@ -224,9 +224,9 @@ function Game(props) {
 
 	const guess = function() {
 		setOpponentDialog(GetPhrases(stage, "doubt", lang));
+		setTurns(turns + 1);
 
 		window.setTimeout(()=> {
-			setTurns(turns + 1);
 			setGuessQty(playerGuessQty);
 			setGuessDice(playerGuessDice);
 			setIsPlayerTurn(false);
