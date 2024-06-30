@@ -188,7 +188,6 @@ function Game(props) {
 	};
 
 	const opponentAction = function(currentGuessQty, currentGuessDice) {
-		console.log(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		var action = GetActions(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		setTurns(turns + 1);
 
@@ -251,8 +250,7 @@ function Game(props) {
 		}
 
 		var correctGuess = (diceQty >= currentGuessQty);
-		console.log('diceqty',diceQty, 'guessqty', currentGuessQty, 'guessdice', currentGuessDice);
-		console.log('isPlayerOpen', isPlayerOpen, 'correctGuess', correctGuess);
+		
 		var playerWin = true;
 		if (isPlayerOpen && correctGuess) playerWin = false;
 		if (!isPlayerOpen && !correctGuess) playerWin = false;
