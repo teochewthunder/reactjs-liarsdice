@@ -84,6 +84,12 @@ function Game(props) {
 	}
 
 	const restartStage = function() {
+		setPlayerIntoxication(100);
+		setOpponentIntoxication(100);
+		setGuessQty(3);
+		setGuessDice(2);
+		setPlayerGuessQty(3);
+		setPlayerGuessDice(2);
 		setIsPlayerTurn(true);
 		setStageStarted(false);
 		setRoundStarted(false);
