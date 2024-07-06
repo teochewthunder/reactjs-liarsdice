@@ -83,6 +83,12 @@ function Game(props) {
 		setGameStarted(false);
 	}
 
+	const restartStage = function() {
+		setIsPlayerTurn(true);
+		setStageStarted(false);
+		setRoundStarted(false);
+	}; 
+
 	const startStage = function() {
 		setPlayerIntoxication(100);
 		setOpponentIntoxication(100);
@@ -250,7 +256,7 @@ function Game(props) {
 		}
 
 		var correctGuess = (diceQty >= currentGuessQty);
-		
+
 		var playerWin = true;
 		if (isPlayerOpen && correctGuess) playerWin = false;
 		if (!isPlayerOpen && !correctGuess) playerWin = false;
@@ -261,12 +267,14 @@ function Game(props) {
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
 
-			if (intoxication == 0) 	setOpponentDialog(GetPhrases(stage, "stagelose", lang));
+			if (intoxication == 0) setOpponentDialog(GetPhrases(stage, "stagelose", lang));
 		} else {
 			setOpponentDialog(GetPhrases(stage, "win", lang));
-			var intoxication = playerIntoxication - 10;
+			var intoxication = playerIntoxication - 50;
 			if (intoxication < 0) intoxication = 0;
 			setPlayerIntoxication(intoxication);
+
+			if (intoxication === 0) setOpponentDialog(GetPhrases(stage, "stagewin", lang));
 		}
 	};
 
@@ -390,8 +398,9 @@ function Game(props) {
 								</div>
 							</div>
 
-							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show ? "actionButton" : "hidden") }>{ GetLabels("endround", lang) } &#9673;</button>
-							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) } &#9658;</button>
+							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show && playerIntoxication > 0 ? "actionButton" : "hidden") }>{ GetLabels("endround", lang) } &#9673;</button>
+							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted || playerIntoxication === 0 ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) } &#9658;</button>
+							<button onClick={ ()=>{ restartStage(); } } className={ (playerIntoxication === 0 ? "actionButton" : "hidden") }>{ GetLabels("restartstage", lang) } &#9658;</button>
 						</div>
 					</div>	
 

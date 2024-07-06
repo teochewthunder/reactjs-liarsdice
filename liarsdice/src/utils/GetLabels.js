@@ -4,6 +4,8 @@ const GetLabels = (labelName, lang) => {
 		{ labelName: "start", lang: "cn", value: "开始"},
 		{ labelName: "startstage", lang: "en", value: "Start Stage"},
 		{ labelName: "startstage", lang: "cn", value: "开始"},
+		{ labelName: "restartstage", lang: "en", value: "Restart Stage"},
+		{ labelName: "restartstage", lang: "cn", value: "重新开始"},
 		{ labelName: "endround", lang: "en", value: "End Round"},
 		{ labelName: "endround", lang: "cn", value: "结束"},
 		{ labelName: "startnewround", lang: "en", value: "Start New Round"},
