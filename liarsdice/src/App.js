@@ -43,7 +43,7 @@ function App() {
 
               </div>
               <div className="button">
-                <button onClick={ ()=>{ start(); }} className="actionButton" >{ GetLabels("start", lang) } &#9658;</button>
+                <button data-testid="start-button" onClick={ ()=>{ start(); }} className="actionButton" >{ GetLabels("start", lang) } &#9658;</button>
               </div> 
           </div>  
         </div>
@@ -73,7 +73,7 @@ function App() {
         <div className="right width_half">             
           <label id="DashboardLanguage">
             { GetLabels("language", lang) }&nbsp; 
-            <select onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
+            <select data-testid="dashboard-language" onChange={ (e)=>{ setLang(e.currentTarget.value); }}>
               <option value="cn">CN</option>
               <option value="en">EN</option>
             </select>
@@ -81,7 +81,7 @@ function App() {
 
           <label id="DashboardDialogSpeed">
             { GetLabels("dialogSpeed", lang) }&nbsp; 
-            <select onChange={ (e)=>{ setDialogSpeed(e.currentTarget.value); }}>
+            <select data-testid="dashboard-dialogspeed" onChange={ (e)=>{ setDialogSpeed(e.currentTarget.value); }}>
               <option value="500">{ GetLabels("fast", lang) }</option>
               <option value="1000">{ GetLabels("medium", lang) }</option>
               <option value="1500">{ GetLabels("slow", lang) }</option>

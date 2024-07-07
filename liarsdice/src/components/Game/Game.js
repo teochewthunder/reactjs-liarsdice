@@ -124,7 +124,7 @@ function Game(props) {
 			for (var i = 0; i < 5; i++) {
 				var val = Math.floor(Math.random() * 5) + 1;
 				values_opponent.push(val);
-				var val = Math.floor(Math.random() * 5) + 1;
+				val = Math.floor(Math.random() * 5) + 1;
 				values_player.push(val);
 			}
 
@@ -189,10 +189,6 @@ function Game(props) {
 
 	const isValidGuess = function(qty, dice) {
 		return ((qty > guessQty || dice > guessDice) && qty > 3);
-	};
-
-	const isMaximumGuess = function(qty, dice) {
-		return (qty === 6 && dice === 6);
 	};
 
 	const isHighlightedDice = function(dice) {
@@ -273,10 +269,10 @@ function Game(props) {
 			if (intoxication < 0) intoxication = 0;
 			setOpponentIntoxication(intoxication);
 
-			if (intoxication == 0) setOpponentDialog(GetPhrases(stage, "stagelose", lang));
+			if (intoxication === 0) setOpponentDialog(GetPhrases(stage, "stagelose", lang));
 		} else {
 			setOpponentDialog(GetPhrases(stage, "win", lang));
-			var intoxication = playerIntoxication - 50;
+			var intoxication = playerIntoxication - 35;
 			if (intoxication < 0) intoxication = 0;
 			setPlayerIntoxication(intoxication);
 

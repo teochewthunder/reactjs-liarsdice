@@ -13,7 +13,7 @@ const GetActions = (stage, turns, qty, dice, ownDice, intoxication) => {
 			action.type = (qty <= ownQty + 3 ? "guess" : "open");
 		} else {
 			var rand = Math.floor(Math.random() * 2);
-			action.type = (rand == 0 ? "guess" : "open");
+			action.type = (rand === 0 ? "guess" : "open");
 		}
 
 		if (qty >= 8) action.type = "open"; //last reset

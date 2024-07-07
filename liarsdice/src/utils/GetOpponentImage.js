@@ -1,6 +1,4 @@
 const GetOpponentImage = (stage, intoxication) => {	
-	var tiers = [75, 50, 25];
-
 	if (intoxication === 0) {
 		return "opponent" + stage + "_0";
 	} 
