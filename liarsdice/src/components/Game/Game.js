@@ -50,27 +50,27 @@ function Game(props) {
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(1, 0) }></div>
-					<div className="words"><b>{ GetLabels("opponent1", lang) }</b><br />"{ GetPhrases(1, "stagelose", lang) }"</div>
+					<div className="words"><span className="opponentName">{ GetLabels("opponent1", lang) }</span><br />"{ GetPhrases(1, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(2, 0) }></div>
-					<div className="words"><b>{ GetLabels("opponent2", lang) }</b><br />"{ GetPhrases(2, "stagelose", lang) }"</div>
+					<div className="words"><span className="opponentName">{ GetLabels("opponent2", lang) }</span><br />"{ GetPhrases(2, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(3, 0) }></div>
-					<div className="words"><b>{ GetLabels("opponent3", lang) }</b><br />"{ GetPhrases(3, "stagelose", lang) }"</div>
+					<div className="words"><span className="opponentName">{ GetLabels("opponent3", lang) }</span><br />"{ GetPhrases(3, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(4, 0) }></div>
-					<div className="words"><b>{ GetLabels("opponent4", lang) }</b><br />"{ GetPhrases(4, "stagelose", lang) }"</div>
+					<div className="words"><span className="opponentName">{ GetLabels("opponent4", lang) }</span><br />"{ GetPhrases(4, "stagelose", lang) }"</div>
 				</div>
 
 				<div className="final">
 					<div className={ "profile " + GetOpponentImage(5, 0) }></div>
-					<div className="words"><b>{ GetLabels("opponent5", lang) }</b><br />"{ GetPhrases(5, "stagelose", lang) }"</div>
+					<div className="words"><span className="opponentName">{ GetLabels("opponent5", lang) }</span><br />"{ GetPhrases(5, "stagelose", lang) }"</div>
 				</div>
 			</div>	    	 
 		);	
@@ -280,143 +280,145 @@ function Game(props) {
 		}
 	};
 
-	return (
-		<div id="Main" data-testid="game-main">
-		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
-		    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
-	        </div> 
+	if (stage >= 1 && stage <= 5) {
+		return (
+			<div id="Main" data-testid="game-main">
+			    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
+			    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
+		        </div> 
 
-	        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
-	        	<p>"{ GetPhrases(stage, "intro", lang) }"</p>
-	        	<button className="btnStartStage actionButton" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#9658;</button>
-	        </div>
+		        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
+		        	<p>"{ GetPhrases(stage, "intro", lang) }"</p>
+		        	<button className="btnStartStage actionButton" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#9658;</button>
+		        </div>
 
-			<div id="Game" className={ stageStarted ? "" : "hidden" }>
-				<div className="GameRow">
-					<div className="left width_long">
-						<div className={ (opponentDialog === "" ? "hidden" : "speechballoon " + lang) }>
-							{ opponentDialog }
-						</div>
+				<div id="Game" className={ stageStarted ? "" : "hidden" }>
+					<div className="GameRow">
+						<div className="left width_long">
+							<div className={ (opponentDialog === "" ? "hidden" : "speechballoon " + lang) }>
+								{ opponentDialog }
+							</div>
+						</div>	
+
+						<div className="right width_short">
+							<div className={ "portrait " + GetOpponentImage(stage, 100) }></div>
+							<br />
+							<div className="meter">
+								<div className="metervalue" style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
+							</div>
+						</div>			
+					</div>
+
+					<div className="GameRow">
+						<div className="left width_short">
+							<div className={ "shaker " + (shake ? "shaking" : "") }></div>
+						</div>	
+
+						<div className="right width_long">
+						    {
+						    	opponentDice.map(function(dice, diceIndex){
+	        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
+								    {
+								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
+								    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
+
+			        						return <div className={ css }>
+
+			        						</div>
+			    						})
+			    					}
+			    					</div>
+	    						})
+	    					}	        
+						</div>	
 					</div>	
 
-					<div className="right width_short">
-						<div className={ "portrait " + GetOpponentImage(stage, 100) }></div>
-						<br />
-						<div className="meter">
-							<div className="metervalue" style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
-						</div>
-					</div>			
-				</div>
+					<div className="GameRow">
+						<div className="left width_short">
+							<div className={ "shaker " + (shake ? "shaking" : "") }></div>
+						</div>	
 
-				<div className="GameRow">
-					<div className="left width_short">
-						<div className={ "shaker " + (shake ? "shaking" : "") }></div>
+						<div className="right width_long">
+						    {
+						    	playerDice.map(function(dice, diceIndex){
+	        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
+								    {
+								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
+								    		var css = "dot val" + GetDiceDots(dice, dotIndex)
+
+			        						return <div className={ css }>
+
+			        						</div>
+			    						})
+			    					}
+			    					</div>
+	    						})
+	    					}	
+						</div>	
 					</div>	
 
-					<div className="right width_long">
-					    {
-					    	opponentDice.map(function(dice, diceIndex){
-        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
-							    {
-							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-							    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
-
-		        						return <div className={ css }>
-
-		        						</div>
-		    						})
-		    					}
-		    					</div>
-    						})
-    					}	        
-					</div>	
-				</div>	
-
-				<div className="GameRow">
-					<div className="left width_short">
-						<div className={ "shaker " + (shake ? "shaking" : "") }></div>
-					</div>	
-
-					<div className="right width_long">
-					    {
-					    	playerDice.map(function(dice, diceIndex){
-        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
-							    {
-							    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-							    		var css = "dot val" + GetDiceDots(dice, dotIndex)
-
-		        						return <div className={ css }>
-
-		        						</div>
-		    						})
-		    					}
-		    					</div>
-    						})
-    					}	
-					</div>	
-				</div>	
-
-				<div className="GameRow">
-					<div className="left width_long">
-						<div className={ (shake ? "hidden" : "speechballoon") }>
-							<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "hidden") }>
-								<div id="guessDashboard" className={ (!show && !shake && isPlayerTurn ? "" : "hidden") }>
-									<div className="left width_long">
-										<div className="left width_half">
-											<div className="guessQty left width_long">
-												{ playerGuessQty }
+					<div className="GameRow">
+						<div className="left width_long">
+							<div className={ (shake ? "hidden" : "speechballoon") }>
+								<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "hidden") }>
+									<div id="guessDashboard" className={ (!show && !shake && isPlayerTurn ? "" : "hidden") }>
+										<div className="left width_long">
+											<div className="left width_half">
+												<div className="guessQty left width_long">
+													{ playerGuessQty }
+												</div>
+												<div className="guessButtons right width_short">
+													<button onClick={ ()=>{ adjustPlayerGuessQty(1); } }>&#9650;</button>
+													<br />
+													<button onClick={ ()=>{ adjustPlayerGuessQty(-1); } }>&#9660;</button>
+												</div>
 											</div>
-											<div className="guessButtons right width_short">
-												<button onClick={ ()=>{ adjustPlayerGuessQty(1); } }>&#9650;</button>
-												<br />
-												<button onClick={ ()=>{ adjustPlayerGuessQty(-1); } }>&#9660;</button>
+											<div className="right width_half">
+												<div className="guessDice left width_long">
+													<div className="dice opponent_dice">
+												    {
+												    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
+												    		var css = "dot val" + GetDiceDots(playerGuessDice, dotIndex);
+
+							        						return <div className={ css }>
+
+							        						</div>
+							    						})
+							    					}
+							    					</div>
+												</div>
+												<div className="guessButtons right width_short">
+													<button onClick={ ()=>{ adjustPlayerGuessDice(1); } }>&#9650;</button>
+													<br />
+													<button onClick={ ()=>{ adjustPlayerGuessDice(-1); } }>&#9660;</button>
+												</div>
 											</div>
 										</div>
-										<div className="right width_half">
-											<div className="guessDice left width_long">
-												<div className="dice opponent_dice">
-											    {
-											    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-											    		var css = "dot val" + GetDiceDots(playerGuessDice, dotIndex);
-
-						        						return <div className={ css }>
-
-						        						</div>
-						    						})
-						    					}
-						    					</div>
-											</div>
-											<div className="guessButtons right width_short">
-												<button onClick={ ()=>{ adjustPlayerGuessDice(1); } }>&#9650;</button>
-												<br />
-												<button onClick={ ()=>{ adjustPlayerGuessDice(-1); } }>&#9660;</button>
-											</div>
+										<div className="right width_short">
+											<button onClick={ ()=>{ guess(); } } disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") } className="actionButton">{ GetLabels("guess", lang) }</button>
+											<button onClick={ ()=>{ openup(); } } disabled={ ((guessQty === 3 && guessDice === 2) || show ? "disabled" : "") } className="actionButton">{ GetLabels("openup", lang) }</button>
 										</div>
-									</div>
-									<div className="right width_short">
-										<button onClick={ ()=>{ guess(); } } disabled={ (isValidGuess(playerGuessQty, playerGuessDice) ? "" : "disabled") } className="actionButton">{ GetLabels("guess", lang) }</button>
-										<button onClick={ ()=>{ openup(); } } disabled={ ((guessQty === 3 && guessDice === 2) || show ? "disabled" : "") } className="actionButton">{ GetLabels("openup", lang) }</button>
 									</div>
 								</div>
+
+								<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show && playerIntoxication > 0 ? "actionButton" : "hidden") }>{ GetLabels("endround", lang) } &#9673;</button>
+								<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted || playerIntoxication === 0 ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) } &#9658;</button>
+								<button onClick={ ()=>{ restartStage(); } } className={ (playerIntoxication === 0 ? "actionButton" : "hidden") }>{ GetLabels("restartstage", lang) } &#9658;</button>
 							</div>
+						</div>	
 
-							<button onClick={ ()=>{	endRound();} } className={ (roundStarted && show && playerIntoxication > 0 ? "actionButton" : "hidden") }>{ GetLabels("endround", lang) } &#9673;</button>
-							<button onClick={ ()=>{ startNewRound(); } } className={ (roundStarted || !stageStarted || playerIntoxication === 0 ? "hidden" : "actionButton") }>{ GetLabels("startnewround", lang) } &#9658;</button>
-							<button onClick={ ()=>{ restartStage(); } } className={ (playerIntoxication === 0 ? "actionButton" : "hidden") }>{ GetLabels("restartstage", lang) } &#9658;</button>
-						</div>
-					</div>	
-
-					<div className="right width_short">
-						<div className="portrait player"></div>
-						<br />
-						<div className="meter">
-							<div className="metervalue" style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
-						</div>
-					</div>				
-				</div>					
-			</div>
-		</div>	    	 
-	);
+						<div className="right width_short">
+							<div className="portrait player"></div>
+							<br />
+							<div className="meter">
+								<div className="metervalue" style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
+							</div>
+						</div>				
+					</div>					
+				</div>
+			</div>	    	 
+		);
+	}
 }
 
 export default Game;

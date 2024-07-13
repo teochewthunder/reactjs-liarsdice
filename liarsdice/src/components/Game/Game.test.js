@@ -33,6 +33,27 @@ describe("Game", () => {
       />
     );
     expect(screen.queryByTestId("game-main")).toBeNull();
-    expect(screen.queryByTestId("game-champion")).toBeNull();
   });
 });
+
+describe("Game", () => {
+  setStage(6);
+  setStageStarted(true);
+
+  it("renders champion div for stage 6", () => {
+    render(
+      <Game 
+        lang = { lang }
+        dialogSpeed = { dialogSpeed }
+        stage={ stage }
+        setStage = { setStage }
+        stageStarted={ stageStarted }
+        setStageStarted = { setStageStarted }
+      />
+    );
+
+    expect(screen.queryByText("LITTLE GRASS")).toBeInTheDocument();
+  });
+});
+
+
