@@ -93,6 +93,10 @@
   background-image: url(../../img/opponent5_0.png);
 }
 
+.player {
+  background-image: url(../../img/player.png);
+}
+
 #OpponentIntro {
   width: 400px;
   height: 400px;

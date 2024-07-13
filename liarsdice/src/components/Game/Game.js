@@ -407,7 +407,7 @@ function Game(props) {
 					</div>	
 
 					<div className="right width_short">
-						<div className="portrait"></div>
+						<div className="portrait player"></div>
 						<br />
 						<div className="meter">
 							<div className="metervalue" style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
