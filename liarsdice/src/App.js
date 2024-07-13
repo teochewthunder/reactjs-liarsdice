@@ -65,8 +65,8 @@ function App() {
         <div className={ (gameStarted ? "left width_half" : "left width_half invisible") }>
           <div className="logo"></div>
           <div className="stage">
-            <small>{ stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " }</small>
-            <br /><b>{ stage === 0 || stage === 6? "" : GetLabels("opponent" + stage, lang) }</b>
+            <span className="stageName">{ stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " }</span>
+            <br /><span className="opponentName">{ stage === 0 || stage === 6? "" : GetLabels("opponent" + stage, lang) }</span>
           </div> 
         </div>
 

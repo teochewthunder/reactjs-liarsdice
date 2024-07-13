@@ -42,7 +42,7 @@ function Game(props) {
 
 	if (stage === 6) {
 		return (
-			<div id="Champion">
+			<div id="Champion" data-testid="game-champion">
 				<h1>{ GetLabels("final", lang) }</h1>
 				<p>
 					<button className="btnFinalQuit actionButton"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
@@ -281,7 +281,7 @@ function Game(props) {
 	};
 
 	return (
-		<div id="Main">
+		<div id="Main" data-testid="game-main">
 		    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
 		    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 	        </div> 
