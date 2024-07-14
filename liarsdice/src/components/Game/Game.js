@@ -282,8 +282,8 @@ function Game(props) {
 
 	if (stage >= 1 && stage <= 5) {
 		return (
-			<div id="Main" data-testid="game-main">
-			    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
+			<div id="Main">
+			    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }  data-testid="opponent-image">
 			    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 		        </div> 
 
@@ -317,12 +317,12 @@ function Game(props) {
 						<div className="right width_long">
 						    {
 						    	opponentDice.map(function(dice, diceIndex){
-	        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
+	        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") } key={ "opponentDice" + diceIndex }>
 								    {
 								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 								    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
 
-			        						return <div className={ css }>
+			        						return <div className={ css } key={ "opponentDice" + diceIndex + "_" + dotIndex }>
 
 			        						</div>
 			    						})
@@ -341,12 +341,12 @@ function Game(props) {
 						<div className="right width_long">
 						    {
 						    	playerDice.map(function(dice, diceIndex){
-	        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") }>
+	        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") } key={ "playerDice" + diceIndex }>
 								    {
 								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 								    		var css = "dot val" + GetDiceDots(dice, dotIndex)
 
-			        						return <div className={ css }>
+			        						return <div className={ css } key={ "playerDice" + diceIndex + "_" + dotIndex }>
 
 			        						</div>
 			    						})
@@ -380,7 +380,7 @@ function Game(props) {
 												    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
 												    		var css = "dot val" + GetDiceDots(playerGuessDice, dotIndex);
 
-							        						return <div className={ css }>
+							        						return <div className={ css } key={ "guessDice" + "_" + dotIndex }>
 
 							        						</div>
 							    						})
