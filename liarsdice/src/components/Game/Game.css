@@ -189,7 +189,7 @@
   75%  { margin: 0 auto 0 auto; }
   100% { margin: 5px auto 0 auto; }
 }
-
+/*
 .dice {
   width: 48px;
   height: 48px;
@@ -241,7 +241,7 @@
   border: 2px solid rgb(50, 50, 50);
   background-color: rgb(30, 30, 30);
 }
-
+*/
 .guessQty {
   font-weight: bold;
   font-size: 2.2em;

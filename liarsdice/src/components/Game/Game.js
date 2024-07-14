@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Game.css';
+import Dice from '../../components/Dice';
 
 import GetOpponentImage from '../../utils/GetOpponentImage';
 import GetDiceDots from '../../utils/GetDiceDots';
@@ -317,17 +318,15 @@ function Game(props) {
 						<div className="right width_long">
 						    {
 						    	opponentDice.map(function(dice, diceIndex){
-	        						return <div className={ "dice opponent_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") } key={ "opponentDice" + diceIndex }>
-								    {
-								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-								    		var css = (show ? "dot val" + GetDiceDots(dice, dotIndex) : "dot hideDice");
-
-			        						return <div className={ css } key={ "opponentDice" + diceIndex + "_" + dotIndex }>
-
-			        						</div>
-			    						})
-			    					}
-			    					</div>
+	        						return (
+	        							<Dice
+	        								dice = { dice }
+	        								diceIndex = { diceIndex }
+	        								classPrefix = "opponentDice"
+	        								highlight = { isHighlightedDice(dice) }
+	        								show = { show }
+	        							/>
+	        						);
 	    						})
 	    					}	        
 						</div>	
