@@ -6,12 +6,12 @@
   margin-left: 15px;
 }
 
-.opponent_dice {
+.opponentDice, .guessDice {
   background-color: rgb(20, 20, 20);
   border: 3px solid rgb(20, 20, 20);
 }
 
-.player_dice {
+.playerDice {
   background-color: rgb(255, 255, 250);
   border: 3px solid rgb(255, 255, 250);
 }
@@ -35,12 +35,12 @@
   border-radius: 50%;
 }
 
-.opponent_dice .val1::after {
+.opponentDice .val1::after, .guessDice .val1::after {
   border: 2px solid rgb(200, 200, 200);
   background-color: rgb(180, 180, 180);
 }
 
-.player_dice .val1::after {
+.playerDice .val1::after {
   border: 2px solid rgb(180, 0, 0);
   background-color: rgb(100, 0, 0);
 }

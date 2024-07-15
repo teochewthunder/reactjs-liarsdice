@@ -340,17 +340,15 @@ function Game(props) {
 						<div className="right width_long">
 						    {
 						    	playerDice.map(function(dice, diceIndex){
-	        						return <div className={ "dice player_dice " + (isHighlightedDice(dice) ? "highlighted_dice" : "") } key={ "playerDice" + diceIndex }>
-								    {
-								    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-								    		var css = "dot val" + GetDiceDots(dice, dotIndex)
-
-			        						return <div className={ css } key={ "playerDice" + diceIndex + "_" + dotIndex }>
-
-			        						</div>
-			    						})
-			    					}
-			    					</div>
+	        						return (
+	        							<Dice
+	        								dice = { dice }
+	        								diceIndex = { diceIndex }
+	        								classPrefix = "playerDice"
+	        								highlight = { isHighlightedDice(dice) }
+	        								show = { true }
+	        							/>
+	        						);
 	    						})
 	    					}	
 						</div>	
@@ -373,18 +371,14 @@ function Game(props) {
 												</div>
 											</div>
 											<div className="right width_half">
-												<div className="guessDice left width_long">
-													<div className="dice opponent_dice">
-												    {
-												    	[0,0,0,0,0,0,0,0,0].map(function(dot, dotIndex){
-												    		var css = "dot val" + GetDiceDots(playerGuessDice, dotIndex);
-
-							        						return <div className={ css } key={ "guessDice" + "_" + dotIndex }>
-
-							        						</div>
-							    						})
-							    					}
-							    					</div>
+												<div className="left width_long">
+				        							<Dice
+				        								dice = { playerGuessDice }
+				        								diceIndex = "0"
+				        								classPrefix = "guessDice"
+				        								highlight = { false }
+				        								show = { true }
+				        							/>
 												</div>
 												<div className="guessButtons right width_short">
 													<button onClick={ ()=>{ adjustPlayerGuessDice(1); } }>&#9650;</button>
