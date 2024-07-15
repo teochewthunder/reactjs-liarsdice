@@ -3,7 +3,6 @@ import './Game.css';
 import Dice from '../../components/Dice';
 
 import GetOpponentImage from '../../utils/GetOpponentImage';
-import GetDiceDots from '../../utils/GetDiceDots';
 import GetLabels from '../../utils/GetLabels';
 import GetPhrases from '../../utils/GetPhrases';
 import GetActions from '../../utils/GetActions';

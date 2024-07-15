@@ -32,16 +32,15 @@ describe("Game", () => {
         setStageStarted = { setStageStarted }
       />
     );
-
-    expect(screen.queryByText("YOU ARE THE CHAMPION!")).toBeNull();
+    expect(screen.queryByTestId("game-main")).toBeNull();
   });
 });
 
 describe("Game", () => {
-  setStage(1);
+  setStage(6);
   setStageStarted(true);
 
-  it("renders champion div for stage 1 - 5", () => {
+  it("renders champion div for stage 6", () => {
     render(
       <Game 
         lang = { lang }
@@ -53,8 +52,7 @@ describe("Game", () => {
       />
     );
 
-    expect(screen.queryByTestId("opponent-image")).toBeInTheDocument();
+    expect(screen.queryByText("YOU ARE THE CHAMPION!")).toBeInTheDocument();
   });
 });
-
 
