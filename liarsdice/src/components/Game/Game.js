@@ -122,9 +122,9 @@ function Game(props) {
 			var values_player = [];
 
 			for (var i = 0; i < 5; i++) {
-				var val = Math.floor(Math.random() * 5) + 1;
+				var val = Math.floor(Math.random() * 6) + 1;
 				values_opponent.push(val);
-				val = Math.floor(Math.random() * 5) + 1;
+				val = Math.floor(Math.random() * 6) + 1;
 				values_player.push(val);
 			}
 
