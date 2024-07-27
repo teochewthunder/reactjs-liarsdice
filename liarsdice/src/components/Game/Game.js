@@ -195,6 +195,12 @@ function Game(props) {
 		return (!shake && show && (dice === guessDice || dice === 1));
 	};
 
+	const getMeterColor = function(val) {
+		if (val > 80) return "high";
+		if (val > 50) return "half";
+		return "low";
+	};
+
 	const opponentAction = function(currentGuessQty, currentGuessDice) {
 		var action = GetActions(stage, turns, currentGuessQty, currentGuessDice, opponentDice, opponentIntoxication);
 		setTurns(turns + 1);
@@ -304,7 +310,7 @@ function Game(props) {
 							<div className={ "portrait " + GetOpponentImage(stage, 100) }></div>
 							<br />
 							<div className="meter">
-								<div className="metervalue" style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
+								<div className={ "metervalue metercolor_" + getMeterColor(opponentIntoxication) } style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
 							</div>
 						</div>			
 					</div>
@@ -403,7 +409,7 @@ function Game(props) {
 							<div className="portrait player"></div>
 							<br />
 							<div className="meter">
-								<div className="metervalue" style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
+								<div className={ "metervalue metercolor_" + getMeterColor(playerIntoxication) }  style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
 							</div>
 						</div>				
 					</div>					
