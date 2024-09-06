@@ -36,16 +36,15 @@ function App() {
 
         <div className="col">
           <div className={ (stage === 0 ? "introimage introimage3" : "introimage introimage3 floatup") }>
-          
-          </div>            
-          <div id="IntroStart" className={ (stage === 0 ? "" : "fade") }>
+            
+          </div> 
+          <div id="IntroStart" className={ (stage === 0 ? "" : "") }>
               <div className="logo">
 
               </div>
-              <div className="button">
-                <button data-testid="start-button" onClick={ ()=>{ start(); }} className="actionButton" >{ GetLabels("start", lang) } &#9658;</button>
-              </div> 
-          </div>  
+              <br />
+              <button data-testid="start-button" onClick={ ()=>{ start(); }} className="actionButton" >{ GetLabels("start", lang) } &#9658;</button>
+          </div> 
         </div>
 
         <div className="col">
@@ -58,7 +57,7 @@ function App() {
           <div className={ (stage === 0 ? "introimage introimage5" : "introimage introimage5 floatup") }>
             
           </div> 
-        </div> 
+        </div>
       </div>
 
       <div id="Dashboard">
@@ -67,7 +66,7 @@ function App() {
           <div className="stage">
             <span className="stageName">{ stage === 0 || stage === 6? "" : GetLabels("stage" + stage, lang) + ": " }</span>
             <br /><span className="opponentName">{ stage === 0 || stage === 6? "" : GetLabels("opponent" + stage, lang) }</span>
-          </div> 
+          </div>
         </div>
 
         <div className="right width_half">             
@@ -87,9 +86,9 @@ function App() {
               <option value="1500">{ GetLabels("slow", lang) }</option>
             </select>
           </label>
-        </div>  
+        </div>
       </div>
-      
+
       <Game 
         stage = { stage }
         setStage = { setStage }
@@ -97,7 +96,7 @@ function App() {
         setGameStarted = { setGameStarted }
         lang = { lang }
         dialogSpeed = { dialogSpeed }
-      />       
+      />  
     </div>
   );
 }

@@ -2,8 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Dice from "./Dice";
 
-import GetDiceDots from "../../utils/GetDiceDots";
-
 describe("Dice", () => {
   it("renders dice for 6", () => {
     render(

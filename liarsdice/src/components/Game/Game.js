@@ -42,7 +42,7 @@ function Game(props) {
 
 	if (stage === 6) {
 		return (
-			<div id="Champion" data-testid="game-champion">
+			<div id="Champion">
 				<h1>{ GetLabels("final", lang) }</h1>
 				<p>
 					<button className="btnFinalQuit actionButton"  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
@@ -73,7 +73,7 @@ function Game(props) {
 					<div className="words"><span className="opponentName">{ GetLabels("opponent5", lang) }</span><br />"{ GetPhrases(5, "stagelose", lang) }"</div>
 				</div>
 			</div>	    	 
-		);	
+		);
 	} 
 
 	function quit() {
@@ -142,11 +142,11 @@ function Game(props) {
 				setTurns(0);
 				setIsPlayerTurn(true);
 
-				if (isPlayerTurn) {
+				//if (isPlayerTurn) {
 					setOpponentDialog(GetPhrases(stage, "yourturn", lang));
-				} else {
-					opponentAction(4, 2);
-				}
+				//} else {
+					//opponentAction(4, 2);
+				//}
 			},
 			1000
 		);	
@@ -215,7 +215,8 @@ function Game(props) {
 			setShow(true);
 			window.setTimeout(()=> {
 				checkWin(false, currentGuessQty, currentGuessDice);
-			}, dialogSpeed * 2);
+			}, 
+			dialogSpeed * 2);
 		}
 
 		if (action.type === "guess") {
@@ -231,7 +232,8 @@ function Game(props) {
 				});
 				setOpponentDialog(dialog);
 				setIsPlayerTurn(true);
-			}, dialogSpeed * 2);
+			}, 
+			dialogSpeed * 2);
 		}
 	};
 
@@ -288,20 +290,20 @@ function Game(props) {
 
 	if (stage >= 1 && stage <= 5) {
 		return (
-			<div id="Main">
-			    <div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }  data-testid="opponent-image">
-			    	<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
+			<div id="Main" testng-id="game-main">
+		    	<div id="Opponent" className={ GetOpponentImage(stage, opponentIntoxication) }>
+		    		<button className={ gameStarted ? "btnQuit actionButton" : "hidden" }  onClick={ ()=>{ quit(); } }>{ GetLabels("quit", lang) } &#9650;</button>
 		        </div> 
 
 		        <div id="OpponentIntro" className={ stageStarted ? "hidden" : "" }>
 		        	<p>"{ GetPhrases(stage, "intro", lang) }"</p>
 		        	<button className="btnStartStage actionButton" onClick={ ()=>{ startStage(); } }>{ GetLabels("startstage", lang) } &#9658;</button>
-		        </div>
+		        </div>	
 
 				<div id="Game" className={ stageStarted ? "" : "hidden" }>
 					<div className="GameRow">
 						<div className="left width_long">
-							<div className={ (opponentDialog === "" ? "hidden" : "speechballoon " + lang) }>
+							<div className={ (opponentDialog === "" ? "hidden" : "speechballoon") }>
 								{ opponentDialog }
 							</div>
 						</div>	
@@ -312,13 +314,13 @@ function Game(props) {
 							<div className="meter">
 								<div className={ "metervalue metercolor_" + getMeterColor(opponentIntoxication) } style={{ marginLeft: "-" + (100 - opponentIntoxication) + "px" }}></div>
 							</div>
-						</div>			
+						</div>
 					</div>
 
 					<div className="GameRow">
 						<div className="left width_short">
 							<div className={ "shaker " + (shake ? "shaking" : "") }></div>
-						</div>	
+						</div>
 
 						<div className="right width_long">
 						    {
@@ -333,14 +335,14 @@ function Game(props) {
 	        							/>
 	        						);
 	    						})
-	    					}	        
+	    					}
 						</div>	
 					</div>	
 
 					<div className="GameRow">
 						<div className="left width_short">
 							<div className={ "shaker " + (shake ? "shaking" : "") }></div>
-						</div>	
+						</div>
 
 						<div className="right width_long">
 						    {
@@ -355,13 +357,13 @@ function Game(props) {
 	        							/>
 	        						);
 	    						})
-	    					}	
-						</div>	
+	    					}
+						</div>
 					</div>	
 
 					<div className="GameRow">
 						<div className="left width_long">
-							<div className={ (shake ? "hidden" : "speechballoon") }>
+							<div className="speechballoon">
 								<div id="playerDashboard" className={ (isPlayerTurn && roundStarted ? "" : "hidden") }>
 									<div id="guessDashboard" className={ (!show && !shake && isPlayerTurn ? "" : "hidden") }>
 										<div className="left width_long">
@@ -375,6 +377,7 @@ function Game(props) {
 													<button onClick={ ()=>{ adjustPlayerGuessQty(-1); } }>&#9660;</button>
 												</div>
 											</div>
+
 											<div className="right width_half">
 												<div className="left width_long">
 				        							<Dice
@@ -411,12 +414,12 @@ function Game(props) {
 							<div className="meter">
 								<div className={ "metervalue metercolor_" + getMeterColor(playerIntoxication) }  style={{ marginLeft: "-" + (100 - playerIntoxication) + "px" }}></div>
 							</div>
-						</div>				
-					</div>					
-				</div>
+						</div>
+					</div>			
+				</div>        
 			</div>	    	 
 		);
-	}
+	}	
 }
 
 export default Game;

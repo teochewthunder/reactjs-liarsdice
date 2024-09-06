@@ -116,7 +116,7 @@ const GetPhrases = (personality, phraseName, lang) => {
 		{ personality: 4, phraseName: "guess", lang: "cn", value: "有意思..."},
 		{ personality: 4, phraseName: "guess", lang: "en", value: "This is my guess."},
 		{ personality: 4, phraseName: "guess", lang: "cn", value: "我来猜了"},
-		{ personality: 5, phraseName: "guess", lang: "en", value: "You can't fool m!"},
+		{ personality: 5, phraseName: "guess", lang: "en", value: "You can't fool me!"},
 		{ personality: 5, phraseName: "guess", lang: "cn", value: "你骗不了我!"},
 		{ personality: 5, phraseName: "guess", lang: "en", value: "Damn!"},
 		{ personality: 5, phraseName: "guess", lang: "cn", value: "他妈的!"},
