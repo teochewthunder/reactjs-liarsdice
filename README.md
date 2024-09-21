@@ -3,10 +3,10 @@
 
 ## App
 - Props
-  - xx
-  - xx
-  - xx
-  - xx
+  - `lang`: "en" or "cn". Used to determine the language used in the labels of the interface.
+  - `dialogSpeed`: Numerical. 100, 200 or 500. Used to determine the delay between dialogs.
+  - `stage`: Numerical. Range 1 to 6. Determines progress in the game, and current opponent.
+  - `gameStarted`: Boolean. `false` by default, `true` only when game is started by user.
 - Functions
   - xx
   - xx
