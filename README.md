@@ -8,17 +8,28 @@
   - `stage`: Numerical. Range 1 to 6. Determines progress in the game, and current opponent.
   - `gameStarted`: Boolean. `false` by default, `true` only when game is started by user.
 - Functions
-  - xx
-  - xx
-  - xx
-  - xx
+  - `start()`: sets `stage` to 1 and (after a delay) `gameStarted1 to `true`.
 
  ## Game
 - Props
-  - xx
-  - xx
-  - xx
-  - xx
+  - `playerIntoxication`:
+  - `opponentIntoxication`: 
+  - `playerDice`:
+  - `opponentDice`:
+  - `opponentDialog`:
+  - `playerGuessQty`:
+  - `playerGuessDice`:
+  - `guessQty`:
+  - `guessDice`:
+  - `shake`:
+  - `show`:
+  - `isPlayerTurn`:
+  - `isPlayerTurn`:
+  - `round`:
+  - `stageStarted`:
+  - `roundStarted`:
+  - `turns`: 
+
 - Functions
   - xx
   - xx
