@@ -2,51 +2,62 @@
  Game of deceit written using ReactJS
 
 ## App
-- Props
+- Data
   - `lang`: "en" or "cn". Used to determine the language used in the labels of the interface.
-  - `dialogSpeed`: Numerical. 100, 200 or 500. Used to determine the delay between dialogs.
-  - `stage`: Numerical. Range 1 to 6. Determines progress in the game, and current opponent.
+  - `dialogSpeed`: Integer. 100, 200 or 500. Used to determine the delay between dialogs.
+  - `stage`: Integer. Range 1 to 6. Determines progress in the game, and current opponent.
   - `gameStarted`: Boolean. `false` by default, `true` only when game is started by user.
 - Functions
   - `start()`: sets `stage` to 1 and (after a delay) `gameStarted1 to `true`.
 
  ## Game
 - Props
-  - `playerIntoxication`:
-  - `opponentIntoxication`: 
-  - `playerDice`:
-  - `opponentDice`:
-  - `opponentDialog`:
-  - `playerGuessQty`:
-  - `playerGuessDice`:
-  - `guessQty`:
-  - `guessDice`:
-  - `shake`:
-  - `show`:
-  - `isPlayerTurn`:
-  - `isPlayerTurn`:
-  - `round`:
-  - `stageStarted`:
-  - `roundStarted`:
-  - `turns`: 
+  - `lang`: "en" or "cn". Used to determine the language used in the labels of the interface.
+  - `dialogSpeed`: Integer. 100, 200 or 500. Used to determine the delay between dialogs.
+  - `stage`: Integer. Range 1 to 6. Determines progress in the game, and current opponent.
+  - `gameStarted`: Boolean. `false` by default, `true` only when game is started by user.
+- Data
+  - `playerIntoxication`: Integer. Range 0 to 100. Starts at 100 at the start of every stage, and when it reaches 0, the player loses.
+  - `opponentIntoxication`: Integer. Range 0 to 100. Starts at 100 at the start of every stage, and when it reaches 0, the player wins.
+  - `playerDice`: Array of five integers. Range 1 to 6.
+  - `opponentDice`: Array of five integers. Range 1 to 6.
+  - `opponentDialog`: String.
+  - `playerGuessQty`: Integer. Range 3 to 10.
+  - `playerGuessDice`: Integer. Range 2 to 6.
+  - `guessQty`: Integer. Range 3 to 10.
+  - `guessDice`: Integer. Range 2 to 6.
+  - `shake`: Boolean. Controls whether to display shaking animation.
+  - `show`: Boolean. Controls whether to show values of opponent's dice.
+  - `isPlayerTurn`: Boolean. Controls whether or not to display player's dashboard.
+  - `round`: Integer. Starts at 0.
+  - `stageStarted`: Boolean. `false` by default. Set to `true` to indicate that stage has started.
+  - `roundStarted`: Boolean. `false` by default. Set to `true` to indicate that round has started.
+  - `turns`: Integer. 0 at the start of every round.
 
 - Functions
-  - xx
-  - xx
-  - xx
-  - xx
+  - `quit()`:
+  - `restartStage()`:
+  - `startStage()`:
+  - `startNewRound()`:
+  - `endRound()`:
+  - `adjustPlayerGuessQty()`:
+  - `adjustPlayerGuessDice()`:
+  - `isValidGuess()`:
+  - `isHighlightedDice()`:
+  - `getMeterColor()`:
+  - `opponentAction()`:
+  - `guess()`:
+  - `openup()`:
+  - `checkWin()`:
 
  ## Dice
 - Props
-  - xx
-  - xx
-  - xx
-  - xx
-- Functions
-  - xx
-  - xx
-  - xx
-  - xx
+  - `dice`: Array of five integers. Range 1 to 6.
+  - `diceIndex`: Integer. Range 0 to 5.
+  - `classPrefix`: String. Determines CSS class.
+  - `highlight`: Boolean. Determines CSS class.
+  - `show`: Boolean. Determines CSS class.
+
 
 ### Utilities
 - `GetLabels`: Uses a label type and language to obtain a match from an array, returning a string value.
