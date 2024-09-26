@@ -35,11 +35,11 @@
   - `turns`: Integer. 0 at the start of every round.
 
 - Functions
-  - `quit()`:
-  - `restartStage()`:
-  - `startStage()`:
-  - `startNewRound()`:
-  - `endRound()`:
+  - `quit()`: Resets `stage` and `gameStarted` so that user ends up at the Intro screen.
+  - `restartStage()`: Resets intoxication levels, guesses and `stageStarted`.
+  - `startStage()`: Resets intoxication levels, guesses and other flags. Sets `stageStarted` to `true`. Sets `opponentDialog`.
+  - `startNewRound()`: Sets `roundStarted` to `true`. Activates shaking and dice rolling animations. After a delay, reset `turns`, increment `round`. Ensure player goes first and set `opponentDialog` to reflect this.
+  - `endRound()`: Resets guesses and `roundtarted`. If `opponentIntoxication` has reached 0, go on to next stage by incrementing `stage`. Otherwise, continue by setting `opponentDialog`.
   - `adjustPlayerGuessQty()`:
   - `adjustPlayerGuessDice()`:
   - `isValidGuess()`:
