@@ -8,7 +8,7 @@
   - `stage`: Integer. Range 1 to 6. Determines progress in the game, and current opponent.
   - `gameStarted`: Boolean. `false` by default, `true` only when game is started by user.
 - Functions
-  - `start()`: sets `stage` to 1 and (after a delay) `gameStarted1 to `true`.
+  - `start()`: Set `stage` to 1 and (after a delay) `gameStarted1 to `true`.
 
  ## Game
 - Props
@@ -35,20 +35,20 @@
   - `turns`: Integer. 0 at the start of every round.
 
 - Functions
-  - `quit()`: Resets `stage` and `gameStarted` so that user ends up at the Intro screen.
-  - `restartStage()`: Resets intoxication levels, guesses and `stageStarted`.
-  - `startStage()`: Resets intoxication levels, guesses and other flags. Sets `stageStarted` to `true`. Sets `opponentDialog`.
-  - `startNewRound()`: Sets `roundStarted` to `true`. Activates shaking and dice rolling animations. After a delay, reset `turns`, increment `round`. Ensure player goes first and set `opponentDialog` to reflect this.
-  - `endRound()`: Resets guesses and `roundtarted`. If `opponentIntoxication` has reached 0, go on to next stage by incrementing `stage`. Otherwise, continue by setting `opponentDialog`.
-  - `adjustPlayerGuessQty()`:
-  - `adjustPlayerGuessDice()`:
-  - `isValidGuess()`:
-  - `isHighlightedDice()`:
-  - `getMeterColor()`:
-  - `opponentAction()`:
-  - `guess()`:
-  - `openup()`:
-  - `checkWin()`:
+  - `quit()`: Reset `stage` and `gameStarted` so that user ends up at the Intro screen.
+  - `restartStage()`: Reset intoxication levels, guesses and `stageStarted`.
+  - `startStage()`: Reset intoxication levels, guesses and other flags. Sets `stageStarted` to `true`. Sets `opponentDialog`.
+  - `startNewRound()`: Set `roundStarted` to `true`. Activate shaking and dice rolling animations. After a delay, reset `turns`, increment `round`. Ensure player goes first and set `opponentDialog` to reflect this.
+  - `endRound()`: Reset guesses and `roundtarted`. If `opponentIntoxication` has reached 0, go on to next stage by incrementing `stage`. Otherwise, continue by setting `opponentDialog`.
+  - `adjustPlayerGuessQty()`: Adjust `playerGuessQty` up or down, but within a range.
+  - `adjustPlayerGuessDice()`: Adjust `playerGuessDice` up or down, but within a range.
+  - `isValidGuess()`: Check if the projected guess quantity and dice value is valid.
+  - `isHighlightedDice()`: Against the guessed dice, return `true` if the dice value is 1 or matches the gussed dice value, and `false` otherwise.
+  - `getMeterColor()`: Return a CSS class based on the numerical value of the meter.
+  - `opponentAction()`: Use a series of arguments - intoxication, current dice, current guess, stage - to determine next action, which can be opening up or a counter-guess.
+  - `guess()`: Increment `turns`, and set `opponentDialog`. After a delay, replace the values of `guessQty` and `guessDice`, and set `opponentDialog`.
+  - `openup()`: Set `opponentDialog`. After a delay, set `show` to `true` and check win conditions.
+  - `checkWin()`: Check if player or opponent has won, and set `opponentDialog` accordingly, then decrement either opponent or player's intoxication level.
 
  ## Dice
 - Props
