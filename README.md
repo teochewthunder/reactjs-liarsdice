@@ -1,4 +1,4 @@
-# reactjs-liarsdice (in progress)
+# reactjs-liarsdice
  Game of deceit written using ReactJS
 
 ## App
